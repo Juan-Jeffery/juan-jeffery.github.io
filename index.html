@@ -12,15 +12,15 @@
       background-color: #fff;
     }
 
-  nav {
-    position: fixed;
-    top: 20px;
-    left: 30px;
-    z-index: 1000;
-    background: white; 
-    padding: 5px 10px;
-    border-radius: 8px;
-  }
+    nav {
+      position: fixed;
+      top: 20px;
+      left: 30px;
+      z-index: 1000;
+      background: white;
+      padding: 5px 10px;
+      border-radius: 8px;
+    }
 
     nav a {
       margin-right: 20px;
@@ -37,12 +37,13 @@
     .hero {
       position: relative;
       text-align: center;
+      margin-top: 70px; /* 預留nav空間 */
     }
 
     .hero img {
       width: 100%;
       height: auto;
-      opacity: 0.2;
+      opacity: 0.4;
     }
 
     .hero-text {
@@ -55,15 +56,16 @@
     .hero-text h1 {
       font-size: 3em;
       margin: 0;
+      color: #111;
     }
 
     .hero-text p {
       font-size: 1.2em;
-      color: #444;
+      color: #666;
     }
 
     section {
-      padding: 60px 20px 40px 20px;
+      padding: 40px 20px;
       max-width: 900px;
       margin: 0 auto;
     }
@@ -74,31 +76,22 @@
       margin-bottom: 20px;
       border-bottom: 2px solid #eee;
       padding-bottom: 5px;
-    }
-
-    ul {
-      padding-left: 20px;
+      color: #111;
     }
 
     a {
       color: #007acc;
     }
-
-    a:hover {
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
 
-  <!-- 🔗 Navigation -->
   <nav>
     <a href="index.html">Home</a>
     <a href="projects.html">Projects</a>
-    <a href="award.html">Awards</a>
+    <a href="experience.html">Experience</a>
   </nav>
 
-  <!--  Hero Section -->
   <div class="hero">
     <img src="https://user-images.githubusercontent.com/74038190/212284136-03988914-d899-44b4-b1d9-4eeccf656e44.gif" alt="Header Background" />
     <div class="hero-text">
@@ -107,22 +100,14 @@
     </div>
   </div>
 
-  <!--  Main Content -->
   <section>
-    <h2>🐦‍⬛ About Me</h2>
+    <h2>🔬 About Me</h2>
     <p>
-      I'm a master's student in Bioinformatics at NYCU, passionate about cancer genomics biology.
+      I'm a master's student in Bioinformatics at NYCU, passionate about cancer genomics and data-driven biology.
       I specialize in Linux-based pipeline development, mutation analysis, and visualizing biological data using Python and R.
     </p>
 
-    <h2>🐈‍⬛ Education</h2>
-    <ul>
-      <li><strong>M.S.</strong>, Bioinformatics and Systems Biology – National Yang Ming Chiao Tung University (Expected June 2025)</a></li>
-      <br>
-      <li><strong>B.S.</strong>, Biomedical Sciences – Chung Shan Medical University</li>
-    </ul>
-
-    <h2>🐃 Contact</h2>
+    <h2>📫 Contact</h2>
     <p>GitHub: <a href="https://github.com/Juan-Jeffery" target="_blank">Juan-Jeffery</a></p>
     <p>LinkedIn: <a href="https://linkedin.com/in/juan-jeffery" target="_blank">linkedin.com/in/juan-jeffery</a></p>
   </section>
