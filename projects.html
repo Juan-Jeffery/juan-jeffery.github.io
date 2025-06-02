@@ -49,14 +49,35 @@
     }
 
     .project {
-      background: #f2f2f2;
+      position: relative;
       border-radius: 12px;
       padding: 20px;
       margin-bottom: 20px;
+      color: white;
+      background-image: url('https://raw.githubusercontent.com/Juan-Jeffery/juan-jeffery.github.io/main/plot/ITD.png');
+      background-size: cover;
+      background-position: center;
+      min-height: 180px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .project::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5); /* 黑色遮罩 */
+      border-radius: 12px;
+      z-index: 0;
+    }
+
+    .project > * {
+      position: relative;
+      z-index: 1;
     }
 
     a {
-      color: #007acc;
+      color: #61dafb;
     }
 
     a:hover {
