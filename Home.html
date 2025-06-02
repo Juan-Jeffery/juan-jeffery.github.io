@@ -12,6 +12,28 @@
       background-color: #111;
     }
 
+    nav {
+      background-color: #000;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #61dafb;
+    }
+
     .hero {
       position: relative;
       text-align: center;
@@ -56,10 +78,23 @@
     a {
       color: #61dafb;
     }
+
+    h2 {
+      border-bottom: 1px solid #333;
+      padding-bottom: 5px;
+    }
   </style>
 </head>
 <body>
 
+  <!-- 🔗 Navigation -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="award.html">Awards</a>
+  </nav>
+
+  <!-- 🖼 Hero Section -->
   <div class="hero">
     <img src="https://user-images.githubusercontent.com/74038190/212284136-03988914-d899-44b4-b1d9-4eeccf656e44.gif" alt="Header Background" />
     <div class="hero-text">
@@ -68,6 +103,7 @@
     </div>
   </div>
 
+  <!-- 🧬 Main Content -->
   <section>
     <h2>🔬 About Me</h2>
     <p>
@@ -75,23 +111,15 @@
       I specialize in Linux-based pipeline development, mutation analysis, and visualizing biological data using Python and R.
     </p>
 
-    <h2>📂 Projects</h2>
-
-    <div class="project">
-      <h3>🧬 ITD Mutation Analysis Pipeline</h3>
-      <p>Designed a workflow to detect Internal Tandem Duplications (ITDs) in cancer using VCF files, BEDtools, and GC content analysis.</p>
-      <p><a href="https://github.com/Juan-Jeffery/ITD-pipeline">View Project</a></p>
-    </div>
-
-    <div class="project">
-      <h3>🧠 Circular-DNA Design</h3>
-      <p>Generates circular DNA sequences specifically designed for GotCha’s Rolling Circle Amplification (RCA) mechanism based on user-inputted micro-RNA targets.</p>
-      <p><a href="https://github.com/Juan-Jeffery/CSMU_iGEM">View Project</a></p>
-    </div>
+    <h2>🎓 Education</h2>
+    <ul>
+      <li><strong>M.S.</strong>, Bioinformatics and Systems Biology – National Yang Ming Chiao Tung University (Expected June 2025)</li>
+      <li><strong>B.S.</strong>, Biomedical Sciences – Chung Shan Medical University</li>
+    </ul>
 
     <h2>📫 Contact</h2>
-    <p>GitHub: <a href="https://github.com/Juan-Jeffery">Juan-Jeffery</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/juan-jeffery">linkedin.com/in/juan-jeffery</a></p>
+    <p>GitHub: <a href="https://github.com/Juan-Jeffery" target="_blank">Juan-Jeffery</a></p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/juan-jeffery" target="_blank">linkedin.com/in/juan-jeffery</a></p>
   </section>
 
 </body>
