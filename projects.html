@@ -1,57 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Projects</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects | Juan Jeffery</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      background-color: #f9f9f9;
+      margin: 0;
+      font-family: "Fira Code", monospace;
+      color: #111;
+      background-color: #fff;
     }
+
+    nav {
+      position: fixed;
+      top: 20px;
+      left: 30px;
+      z-index: 1000;
+      background: white;
+      padding: 5px 10px;
+      border-radius: 8px;
+    }
+
     nav a {
-      margin: 0 15px;
+      margin-right: 20px;
       text-decoration: none;
-      color: #000;
       font-weight: bold;
+      color: #111;
+      transition: color 0.3s;
     }
+
     nav a:hover {
-      color: gray;
+      color: #007acc;
     }
+
+    section {
+      padding: 80px 20px 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 1.8em;
+      margin-top: 80px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 5px;
+    }
+
     .project {
-      background: #fff;
+      background: #f2f2f2;
+      border-radius: 12px;
       padding: 20px;
       margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
-    h1 {
-      margin-bottom: 20px;
+
+    a {
+      color: #007acc;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="index.html">Home</a> |
-    <a href="projects.html">Projects</a> |
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
     <a href="award.html">Awards</a>
   </nav>
-  <hr>
 
-  <h1>🧪 Projects</h1>
+  <section>
+    <h2>📂 Projects</h2>
 
-  <div class="project">
-    <h3>🧬 ITD Mutation Analysis Pipeline</h3>
-    <p>Designed a workflow to detect Internal Tandem Duplications (ITDs) in cancer using VCF files, BEDtools, and GC content analysis.</p>
-    <p><a href="https://github.com/Juan-Jeffery/ITD-pipeline" target="_blank">View Project</a></p>
-  </div>
+    <div class="project">
+      <h3>🧬 ITD Mutation Analysis Pipeline</h3>
+      <p>Designed a workflow to detect Internal Tandem Duplications (ITDs) in cancer using VCF files, BEDtools, and GC content analysis.</p>
+      <p><a href="https://github.com/Juan-Jeffery/ITD-pipeline" target="_blank">View Project</a></p>
+    </div>
 
-  <div class="project">
-    <h3>🧠 Circular-DNA Design</h3>
-    <p>Generates circular DNA sequences specifically designed for GotCha’s Rolling Circle Amplification (RCA) mechanism based on user-inputted micro-RNA targets.</p>
-    <p><a href="https://github.com/Juan-Jeffery/CSMU_iGEM" target="_blank">View Project</a></p>
-  </div>
+    <div class="project">
+      <h3>🧠 Circular-DNA Design</h3>
+      <p>Generates circular DNA sequences specifically designed for GotCha’s Rolling Circle Amplification (RCA) mechanism based on user-inputted micro-RNA targets.</p>
+      <p><a href="https://github.com/Juan-Jeffery/CSMU_iGEM" target="_blank">View Project</a></p>
+    </div>
+  </section>
 
 </body>
 </html>
