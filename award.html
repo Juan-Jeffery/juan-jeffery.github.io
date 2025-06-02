@@ -1,12 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Awards</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Awards | Juan Jeffery</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Fira Code", monospace;
+      color: #111;
+      background-color: #fff;
+    }
+
+    nav {
+      position: fixed;
+      top: 20px;
+      left: 30px;
+      z-index: 1000;
+      background: white;
+      padding: 5px 10px;
+      border-radius: 8px;
+    }
+
+    nav a {
+      margin-right: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #111;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #007acc;
+    }
+
+    section {
+      padding: 80px 20px 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 1.8em;
+      margin-top: 80px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 5px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    a {
+      color: #007acc;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <h1>Awards & Achievements</h1>
-  <p>List your awards here.</p>
-  <a href="index.html">← Back to Home</a>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="award.html">Awards</a>
+  </nav>
+
+  <section>
+    <h2>🏆 Awards</h2>
+    <ul>
+      <li>🏅 iGEM 2022: Gold Medal</li>
+      <li>🧠 iGEM 2022: Nominated for Best Software</li>
+      <li>🧬 Poster Presentation at International Conference</li>
+    </ul>
+  </section>
+
 </body>
 </html>
