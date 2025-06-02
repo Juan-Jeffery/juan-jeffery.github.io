@@ -49,38 +49,29 @@
     }
 
     .project {
-      position: relative;
       border-radius: 12px;
       padding: 20px;
       margin-bottom: 20px;
       color: #111;
       background-size: cover;
       background-position: center;
-      min-height: 180px;
+      background-repeat: no-repeat;
+      position: relative;
       overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
     .project::before {
       content: "";
       position: absolute;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.75); /* 白色遮罩透明度較高 */
-      border-radius: 12px;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255, 255, 255, 0.7);
       z-index: 0;
+      border-radius: 12px;
     }
 
     .project > * {
       position: relative;
       z-index: 1;
-    }
-
-    .project.itd {
-      background-image: url('https://raw.githubusercontent.com/Juan-Jeffery/juan-jeffery.github.io/main/plot/ITD.png');
-    }
-
-    .project.circular {
-      background-image: url('https://raw.githubusercontent.com/Juan-Jeffery/juan-jeffery.github.io/main/plot/cir_rna.png');
     }
 
     a {
@@ -97,20 +88,20 @@
   <nav>
     <a href="index.html">Home</a>
     <a href="projects.html">Projects</a>
-    <a href="award.html">Awards</a>
+    <a href="experience.html">Experience</a>
   </nav>
 
   <section>
-    <h2>Projects</h2>
+    <h2>📂 Projects</h2>
 
-    <div class="project itd">
-      <h3> ITD Mutation Analysis Pipeline</h3>
+    <div class="project" style="background-image: url('https://raw.githubusercontent.com/Juan-Jeffery/juan-jeffery.github.io/main/plot/ITD.png');">
+      <h3>🧬 ITD Mutation Analysis Pipeline</h3>
       <p>Designed a workflow to detect Internal Tandem Duplications (ITDs) in cancer using VCF files, BEDtools, and GC content analysis.</p>
       <p><a href="https://github.com/Juan-Jeffery/ITD-pipeline" target="_blank">View Project</a></p>
     </div>
 
-    <div class="project circular">
-      <h3> Circular-DNA Design</h3>
+    <div class="project" style="background-image: url('https://raw.githubusercontent.com/Juan-Jeffery/juan-jeffery.github.io/main/plot/cir_rna.png');">
+      <h3>🧠 Circular-DNA Design</h3>
       <p>Generates circular DNA sequences specifically designed for GotCha’s Rolling Circle Amplification (RCA) mechanism based on user-inputted micro-RNA targets.</p>
       <p><a href="https://github.com/Juan-Jeffery/CSMU_iGEM" target="_blank">View Project</a></p>
     </div>
