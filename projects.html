@@ -35,7 +35,7 @@
     }
 
     section {
-      padding: 80px 20px 40px 20px;
+      padding: 100px 20px 40px 20px;
       max-width: 900px;
       margin: 0 auto;
     }
@@ -51,22 +51,22 @@
     .project {
       border-radius: 12px;
       padding: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       color: #111;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       position: relative;
       overflow: hidden;
-      border: 2px solid white;  /* 白色邊框 */
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* 陰影 */
+      border: 2px solid white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     .project::before {
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.75); /* 增加透明度，讓背景不會影響文字閱讀 */
       z-index: 0;
       border-radius: 12px;
     }
@@ -82,6 +82,40 @@
 
     a:hover {
       text-decoration: underline;
+    }
+
+    /* ✅ 手機版調整 */
+    @media (max-width: 600px) {
+      section {
+        padding: 80px 15px 30px 15px;
+      }
+
+      .project {
+        padding: 15px;
+      }
+
+      h2 {
+        font-size: 1.5em;
+      }
+
+      nav {
+        top: 10px;
+        left: 10px;
+        font-size: 0.9em;
+        padding: 4px 8px;
+      }
+
+      nav a {
+        margin-right: 10px;
+      }
+
+      .project h3 {
+        font-size: 1.2em;
+      }
+
+      .project p {
+        font-size: 0.95em;
+      }
     }
   </style>
 </head>
