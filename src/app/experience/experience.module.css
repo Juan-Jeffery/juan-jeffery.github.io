@@ -159,7 +159,7 @@
   }
 
   .expLevelBox {
-    top: 10px;
+    top: 40px;
     right: 10px;
     transform: scale(0.85); /* 稍微縮小避免擋到指令文字 */
     transform-origin: top right;
