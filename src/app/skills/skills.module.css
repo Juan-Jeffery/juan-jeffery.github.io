@@ -183,32 +183,42 @@
   
   /* 1. 頁面容器 */
   .skillsPage {
-    /* ✅ 只需要改底部留白為 0 即可。頂部留白直接交給 globals.css 的 page-container 控制 (100px) */
-    padding-bottom: 0; 
+    /* 強制清除左右 padding，避免 100% 寬度被撐破 */
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important; 
   }
   
   /* 2. 靜態網格容器 */
   .skillsGrid {
-    /* ✅ 改為垂直排列 (column)，徹底解決卡片併排導致超出螢幕的問題 */
     flex-direction: column;
     align-items: center;
-    /* 原本電腦版已經有 display: flex 和 gap: 20px 了，所以這裡不用重複寫 */
+    /* 縮小卡片間的距離 */
+    gap: 15px; 
+    margin-bottom: 20px;
+    padding: 0 15px; /* 在這個層級加回安全邊距，保護卡片不貼緊螢幕邊緣 */
+    box-sizing: border-box;
   }
 
-  /* 3. 靜態卡片本體 */
+  /* 3. 靜態卡片本體 (上方兩張大卡) */
   .skillsGrid .statCard { 
-    /* ✅ 強制卡片最大寬度為 100%，配合 padding 縮小，完美貼合手機 */
-    width: 100%; 
-    max-width: 100%;
+    /* ✅ 下重藥：取消寫死的 420px，改用 100% 寬度，並搭配 border-box 確保 padding 不會向外撐 */
+    width: 100% !important; 
+    max-width: calc(100vw - 30px); /* 螢幕寬度扣掉左右各 15px 的安全邊距 */
     min-height: auto; 
     padding: 25px 20px; 
+    box-sizing: border-box;
   }
     
-  /* 4. 底部輪播卡片 */
+  /* 4. 底部輪播區塊 */
+  .carouselViewport {
+    /* 縮小輪播區塊的上下 padding，避免底部可拉伸太多 */
+    padding: 10px 0 20px 0; 
+  }
+
+  /* 5. 輪播卡片 (下方圖卡) */
   .carouselTrack .statCard { 
-    /* ✅ 維持固定寬度，確保底部的無限輪播依然可以橫向捲動而不變形 */
     width: 250px; 
     min-width: 250px; 
   }
-  
-} /* <-- 確保最後有這個大括號，把整個 @media 包起來 */
+}
