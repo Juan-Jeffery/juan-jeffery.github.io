@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Juan Jeffery | Bioinformatics Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -13,6 +14,13 @@
       line-height: 1.6;
     }
 
+    /* 標題使用像素字體 */
+    h1, h2, .skill-group-title {
+      font-family: 'Press Start 2P', cursive;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+    }
+
     nav {
       position: fixed;
       top: 20px;
@@ -20,8 +28,9 @@
       z-index: 1000;
       background: white;
       padding: 6px 12px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      border: 2px solid #000; /* 輕微像素感邊框 */
+      box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
     }
 
     nav a {
@@ -29,23 +38,21 @@
       text-decoration: none;
       font-weight: bold;
       color: #111;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #007acc;
+      font-size: 0.8em;
     }
 
     .hero {
       position: relative;
       text-align: center;
       margin-top: 70px;
+      background: #f9f9f9;
     }
 
     .hero img {
       width: 100%;
       height: auto;
-      opacity: 0.4;
+      opacity: 0.3;
+      image-rendering: pixelated; /* 讓圖片看起來有像素感 */
     }
 
     .hero-text {
@@ -53,101 +60,156 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      text-shadow: 1px 1px 2px #fff;
     }
 
     .hero-text h1 {
-      font-size: 3em;
+      font-size: 2em;
       margin: 0;
       color: #111;
     }
 
     .hero-text p {
-      font-size: 1.2em;
-      color: #444;
+      font-size: 1em;
+      background: #000;
+      color: #fff;
+      padding: 4px 8px;
+      margin-top: 10px;
     }
 
     section {
-      padding: 50px 20px 30px 20px;
+      padding: 50px 20px;
       max-width: 900px;
       margin: 0 auto;
     }
 
     h2 {
-      font-size: 1.8em;
+      font-size: 1.2em;
       margin-top: 60px;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 5px;
-      color: #111;
+      margin-bottom: 30px;
+      border-bottom: 4px solid #eee;
+      padding-bottom: 10px;
     }
 
-    a {
+    /* 技能區域佈局 */
+    .skills-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .skill-group {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .skill-group-title {
+      font-size: 0.7em;
       color: #007acc;
+      margin-bottom: 20px;
+      display: block;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .skill-item {
+      margin-bottom: 15px;
     }
 
-    /* ✅ 響應式調整 */
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9em;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    /* 像素風格進度條 */
+    .pixel-progress-bg {
+      height: 16px;
+      background: #f0f0f0;
+      border: 2px solid #111;
+      position: relative;
+    }
+
+    .pixel-progress-fill {
+      height: 100%;
+      background: #007acc;
+      /* 利用內陰影做出像素方塊感 */
+      box-shadow: inset -4px 0px 0px #005a99; 
+    }
+
+    a { color: #007acc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
     @media (max-width: 600px) {
-      nav {
-        top: 10px;
-        left: 10px;
-        padding: 4px 8px;
-        font-size: 0.9em;
-      }
-
-      nav a {
-        margin-right: 10px;
-      }
-
-      .hero-text {
-        margin-top: 40px; /* ✅ 下移避免被 nav 遮住 */
-      }
-      .hero-text h1 {
-        font-size: 2em;
-      }
-
-      .hero-text p {
-        font-size: 1em;
-      }
-
-      section {
-        padding: 30px 15px 20px 15px;
-      }
-
-      h2 {
-        font-size: 1.5em;
-      }
+      .skill-group { min-width: 100%; }
+      .hero-text h1 { font-size: 1.2em; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="index.html">Home</a>
-    <a href="projects.html">Projects</a>
-    <a href="experience.html">Experience</a>
+    <a href="index.html">HOME</a>
+    <a href="projects.html">PROJECTS</a>
+    <a href="experience.html">EXP</a>
+    <a href="skills.html">SKILLS</a>
   </nav>
 
   <div class="hero">
-    <img src="https://user-images.githubusercontent.com/74038190/212284136-03988914-d899-44b4-b1d9-4eeccf656e44.gif" alt="Header Background" />
+    <img src="https://user-images.githubusercontent.com/74038190/212284136-03988914-d899-44b4-b1d9-4eeccf656e44.gif" alt="Header" />
     <div class="hero-text">
-      <h1>Juan Jeffery</h1>
-      <p>Bioinformatics Analyst | Cancer Genomics | Data Science</p>
+      <h1>JUAN JEFFERY</h1>
+      <p>Bioinformatics | Data Science</p>
     </div>
   </div>
 
   <section>
-    <h2>🐦‍⬛ About Me</h2>
+    <h2>> ABOUT ME</h2>
     <p>
       I'm a master's student in Bioinformatics at NYCU, passionate about cancer genomics and data-driven biology.
       I specialize in Linux-based pipeline development, mutation analysis, and visualizing biological data using Python and R.
     </p>
 
-    <h2>🐈‍⬛ Contact</h2>
+    <h2>> SKILLS</h2>
+    <div class="skills-wrapper">
+      <div class="skill-group">
+        <span class="skill-group-title">Programming Languages</span>
+        
+        <div class="skill-item">
+          <div class="skill-info"><span>Python</span><span>8/10</span></div>
+          <div class="pixel-progress-bg">
+            <div class="pixel-progress-fill" style="width: 80%;"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-info"><span>R Language</span><span>8/10</span></div>
+          <div class="pixel-progress-bg">
+            <div class="pixel-progress-fill" style="width: 80%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <span class="skill-group-title">Bioinformatics</span>
+        
+        <div class="skill-item">
+          <div class="skill-info"><span>NGS Pipeline</span><span>9/10</span></div>
+          <div class="pixel-progress-bg">
+            <div class="pixel-progress-fill" style="width: 90%;"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-info"><span>Linux / Shell</span><span>7/10</span></div>
+          <div class="pixel-progress-bg">
+            <div class="pixel-progress-fill" style="width: 70%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>> CONTACT</h2>
     <p>GitHub: <a href="https://github.com/Juan-Jeffery" target="_blank">Juan-Jeffery</a></p>
     <p>LinkedIn: <a href="https://linkedin.com/in/juan-jeffery" target="_blank">linkedin.com/in/juan-jeffery</a></p>
   </section>
