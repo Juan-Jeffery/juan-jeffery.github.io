@@ -1,7 +1,9 @@
 // src/app/page.tsx
+
 export default function HomePage() {
   return (
     <main>
+      {/* 封面區塊：保留你原本的 GIF 與 標題 */}
       <div className="hero">
         <img 
           src="https://user-images.githubusercontent.com/74038190/212284136-03988914-d899-44b4-b1d9-4eeccf656e44.gif" 
@@ -14,6 +16,7 @@ export default function HomePage() {
       </div>
 
       <section>
+        {/* 自我介紹區塊 */}
         <h2>{">"} ABOUT ME</h2>
         <p>
           I'm a master's student in Bioinformatics at NYCU, 
@@ -22,6 +25,7 @@ export default function HomePage() {
           and visualizing biological data using Python and R.
         </p>
 
+        {/* 技能統計區塊 */}
         <h2>{">"} SKILLS</h2>
         <div className="skills-wrapper">
           <div className="skill-group">
@@ -39,6 +43,7 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* 聯絡資訊區塊 */}
         <h2>{">"} CONTACT</h2>
         <p>GitHub: <a href="https://github.com/Juan-Jeffery" target="_blank" rel="noreferrer">Juan-Jeffery</a></p>
         <p>LinkedIn: <a href="https://linkedin.com/in/juan-jeffery" target="_blank" rel="noreferrer">linkedin.com/in/juan-jeffery</a></p>
@@ -47,7 +52,10 @@ export default function HomePage() {
   );
 }
 
-// 為了讓代碼更乾淨，我們可以把重複的 Skill Item 寫成一個小組件
+/**
+ * 內部組件：SkillItem
+ * 確保在 page.tsx 內部定義或從外部引入，以供主頁面使用。
+ */
 function SkillItem({ name, score, percent }: { name: string, score: string, percent: string }) {
   return (
     <div className="skill-item">
