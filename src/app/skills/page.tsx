@@ -1,4 +1,4 @@
-"use client"; // 必須宣告為客戶端元件，因為有動畫與 DOM 操作
+"use client"; // 必須放在第一行，支援 useEffect 與動畫邏輯
 
 import { useEffect, useRef } from 'react';
 
@@ -6,10 +6,9 @@ export default function SkillsPage() {
   const trackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // 1. 自動複製卡牌達成無限循環效果 (React 版本的實作)
+    // 自動複製卡牌達成無限循環效果
     if (trackRef.current && trackRef.current.children.length > 0) {
       const children = Array.from(trackRef.current.children);
-      // 只在還沒複製過的情況下複製 (防止 React StrictMode 跑兩次)
       if (trackRef.current.children.length <= 5) { 
         children.forEach(card => {
           const clone = card.cloneNode(true);
@@ -23,7 +22,7 @@ export default function SkillsPage() {
     <section>
       <h2 className="main-title">SKILLS</h2>
 
-      {/* ✅ 上方 2 欄網格：程式語言與工具 */}
+      {/* 上方 2 欄網格：程式語言與工具 */}
       <div className="skills-grid">
         <StatCard title="PROGRAMMING LANGUAGES" tool="sword">
           <ExpBar label="Python" score="8/10" width="80%" />
@@ -42,7 +41,7 @@ export default function SkillsPage() {
         </StatCard>
       </div>
 
-      {/* ✅ 下方無限輪播：生信領域專業知識 */}
+      {/* 下方無限輪播：生信專業知識 */}
       <div className="carousel-viewport">
         <div className="carousel-track" ref={trackRef}>
           
@@ -75,14 +74,14 @@ export default function SkillsPage() {
               <span className="pixel-tag">Mendelian Randomization</span>
             </div>
           </StatCard>
-
         </div>
       </div>
     </section>
   );
 }
 
-/* --- 子組件：統計卡片外殼 (包含 3D 背景動畫) --- */
+/* --- 子組件實作 --- */
+
 function StatCard({ title, tool, children }: { title: string, tool: string, children: React.ReactNode }) {
   return (
     <div className="stat-card">
@@ -90,7 +89,6 @@ function StatCard({ title, tool, children }: { title: string, tool: string, chil
         <div className="stat-header">{title}</div>
         {children}
       </div>
-      {/* 3D 旋轉背景圖騰 */}
       <div className="pixel-container-3d">
         <div className={`pixel-item mc-${tool}`}></div>
       </div>
@@ -98,7 +96,6 @@ function StatCard({ title, tool, children }: { title: string, tool: string, chil
   );
 }
 
-/* --- 子組件：經驗值條 --- */
 function ExpBar({ label, score, width }: { label: string, score: string, width: string }) {
   return (
     <>
@@ -108,7 +105,6 @@ function ExpBar({ label, score, width }: { label: string, score: string, width: 
   );
 }
 
-/* --- 子組件：小標題與標籤 --- */
 function SubTitle({ text, tags }: { text: string, tags: string[] }) {
   return (
     <>

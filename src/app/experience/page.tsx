@@ -1,11 +1,12 @@
-// src/app/experience/page.tsx
+"use client"; // 必須加上這一行，因為下面使用了 <style jsx>
+
 export default function ExperiencePage() {
   return (
     <section>
       <h2>{">"} EXPERIENCE</h2>
       
       <div className="experience-wrapper">
-        {/* 碩士學歷區塊 */}
+        {/* 碩士學歷區塊 - 阮亮學 (Juan Jeffery) */}
         <div className="experience-item">
           <div className="exp-header">
             <span className="degree-tag">M.S.</span>
@@ -27,12 +28,13 @@ export default function ExperiencePage() {
           </div>
           <p className="university">Chung Shan Medical University (CSMU)</p>
           <ul className="achievement-list">
-            <li><strong>iGEM 2021</strong> (International Genetically Engineered Machine) Competition, awarded <strong>Gold Medal</strong></li>
+            <li><strong>iGEM 2021</strong> Competition, awarded <strong>Gold Medal</strong></li>
             <li><strong>iGEM 2021</strong> Competition, nominated for <strong>Best Software Tool</strong></li>
           </ul>
         </div>
       </div>
 
+      {/* 這裡是專屬此頁面的像素風格樣式 */}
       <style jsx>{`
         .experience-wrapper {
           margin-top: 20px;
