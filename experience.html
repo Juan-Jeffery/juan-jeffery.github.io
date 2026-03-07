@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Experience | Juan Jeffery</title>
+  <title>Juan Jeffery | Bioinformatics Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -13,6 +14,13 @@
       line-height: 1.6;
     }
 
+    /* 標題使用像素字體 */
+    h1, h2, .skill-group-title {
+      font-family: 'Press Start 2P', cursive;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+    }
+
     nav {
       position: fixed;
       top: 20px;
@@ -20,8 +28,9 @@
       z-index: 1000;
       background: white;
       padding: 6px 12px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      border: 2px solid #000; /* 輕微像素感邊框 */
+      box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
     }
 
     nav a {
@@ -29,76 +38,121 @@
       text-decoration: none;
       font-weight: bold;
       color: #111;
-      transition: color 0.3s;
+      font-size: 0.8em;
     }
 
-    nav a:hover {
-      color: #007acc;
+    .hero {
+      position: relative;
+      text-align: center;
+      margin-top: 70px;
+      background: #f9f9f9;
+    }
+
+    .hero img {
+      width: 100%;
+      height: auto;
+      opacity: 0.3;
+      image-rendering: pixelated; /* 讓圖片看起來有像素感 */
+    }
+
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-text h1 {
+      font-size: 2em;
+      margin: 0;
+      color: #111;
+    }
+
+    .hero-text p {
+      font-size: 1em;
+      background: #000;
+      color: #fff;
+      padding: 4px 8px;
+      margin-top: 10px;
     }
 
     section {
-      padding: 80px 20px 40px 20px;
+      padding: 50px 20px;
       max-width: 900px;
       margin: 0 auto;
     }
 
     h2 {
-      font-size: 1.8em;
-      margin-top: 80px;
+      font-size: 1.2em;
+      margin-top: 60px;
+      margin-bottom: 30px;
+      border-bottom: 4px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    /* 技能區域佈局 */
+    .skills-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .skill-group {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .skill-group-title {
+      font-size: 0.7em;
+      color: #007acc;
       margin-bottom: 20px;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 5px;
+      display: block;
     }
 
-    li {
-      margin-bottom: 12px;
+    .skill-item {
+      margin-bottom: 15px;
     }
 
-    ul {
-      padding-left: 20px;
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9em;
+      margin-bottom: 5px;
+      font-weight: bold;
     }
 
-    li > ul {
-      margin-top: 1em;
+    /* 像素風格進度條 */
+    .pixel-progress-bg {
+      height: 16px;
+      background: #f0f0f0;
+      border: 2px solid #111;
+      position: relative;
     }
 
-    .experience-block {
-      margin-bottom: 2em;
+    .pixel-progress-fill {
+      height: 100%;
+      background: #007acc;
+      /* 利用內陰影做出像素方塊感 */
+      box-shadow: inset -4px 0px 0px #005a99; 
     }
 
-    /* ✅ 響應式設計 */
+    a { color: #007acc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
     @media (max-width: 600px) {
-      nav {
-        top: 10px;
-        left: 10px;
-        padding: 4px 8px;
-        font-size: 0.9em;
-      }
-
-      nav a {
-        margin-right: 10px;
-      }
-
-      section {
-        padding: 60px 15px 30px 15px;
-      }
-
-      h2 {
-        font-size: 1.5em;
-      }
-
-      li {
-        font-size: 0.95em;
-      }
+      .skill-group { min-width: 100%; }
+      .hero-text h1 { font-size: 1.2em; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="index.html">Home</a>
-    <a href="projects.html">Projects</a>
-    <a href="experience.html">Experience</a>
+    <a href="index.html">HOME</a>
+    <a href="projects.html">PROJECTS</a>
+    <a href="experience.html">EXP</a>
+    <a href="skills.html">SKILLS</a>
   </nav>
 
   <section>
