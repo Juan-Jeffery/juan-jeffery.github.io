@@ -1,0 +1,64 @@
+/* src/components/navbar.module.css */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 180px; /* 寬度可以根據需求調整 */
+  height: 100vh;
+  /* ✅ 與卡片一致的淡灰藍半透明配色 */
+  background-color: rgba(220, 230, 240, 0.9);
+  border-right: 2px solid #111;
+  display: flex;
+  flex-direction: column; /* ✅ 橫向改直向 */
+  padding: 40px 20px;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.navLogo {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8em;
+  margin-bottom: 60px;
+  color: #007acc; /* 統一藍色 */
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* ✅ 清單也直向排列 */
+  gap: 30px;
+}
+
+.navList li a {
+  text-decoration: none;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6em;
+  color: #444;
+  transition: color 0.2s;
+}
+
+.navList li a:hover {
+  color: #007acc; /* 懸停變藍色 */
+}
+
+/* --- ✅ 手機版適應 --- */
+@media (max-width: 850px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    flex-direction: row; /* 手機上恢復橫向或隱藏 */
+    justify-content: space-between;
+    padding: 20px;
+    border-right: none;
+    border-bottom: 2px solid #111;
+  }
+  
+  .navList {
+    flex-direction: row;
+    gap: 15px;
+  }
+}

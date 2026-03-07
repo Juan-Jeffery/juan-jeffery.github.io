@@ -1,5 +1,7 @@
 "use client"; // 必須加上這行才能偵測路徑
 import Link from 'next/link';
+import styles from './navbar.module.css';
+
 import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
@@ -7,9 +9,9 @@ export default function Navbar() {
 
   const links = [
     { name: 'HOME', href: '/' },
-    { name: 'PROJECTS', href: '/projects' },
     { name: 'EXP', href: '/experience' },
     { name: 'SKILLS', href: '/skills' },
+    { name: 'PROJECTS', href: '/projects' },
   ];
 
   return (

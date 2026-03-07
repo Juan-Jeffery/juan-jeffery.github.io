@@ -1,73 +1,79 @@
 /* src/app/projects/projects.module.css */
 
 .projectsPage {
-  background-color: #d6c5a0; /* 保持暗黃底色 */
+  background-color: #d6c5a0; /* 統一暗黃底色 */
   min-height: 100vh;
   padding: 100px 20px 60px 20px;
-  overflow-x: hidden; /* 防止旋轉時出現橫向捲軸 */
+  overflow-x: hidden; /* ✅ 確保旋轉角度不會撐開橫向捲軸 */
 }
 
 .contentWrapper {
-  max-width: 900px;
+  max-width: 800px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* ✅ 掉落動畫核心 */
+/* --- 掉落動畫 --- */
 @keyframes dropDown {
-  0% {
-    transform: translateY(-100vh) rotate(var(--start-rot));
-    opacity: 0;
-  }
-  60% {
-    transform: translateY(20px) rotate(var(--end-rot));
-  }
-  80% {
-    transform: translateY(-10px) rotate(var(--end-rot));
-  }
-  100% {
-    transform: translateY(0) rotate(var(--end-rot));
-    opacity: 1;
-  }
+  0% { transform: translateY(-100vh) rotate(var(--start-rot)); opacity: 0; }
+  60% { transform: translateY(20px) rotate(var(--end-rot)); }
+  100% { transform: translateY(0) rotate(var(--end-rot)); opacity: 1; }
+}
+
+/* --- 圖片浮現動畫 --- */
+@keyframes imageFadeIn {
+  from { opacity: 0; filter: blur(5px); }
+  to { opacity: 0.15; filter: blur(0px); }
 }
 
 .projectCard {
   width: 100%;
-  max-width: 800px;
   position: relative;
   margin-bottom: 30px;
   padding: 40px;
   background-color: rgba(220, 230, 240, 0.9); /* 灰藍半透明 */
   border: 2px solid #111;
   box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.15);
-  
-  /* ✅ 動畫設定 */
   opacity: 0;
-  animation: dropDown 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: dropDown 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
+  box-sizing: border-box; /* ✅ 確保 Padding 不會撐破卡片寬度 */
 }
 
-/* 讓第一張卡片先掉，且稍微往左歪 */
-.projectCard:nth-child(2) { 
-  --start-rot: -15deg; 
-  --end-rot: -1deg; 
-  animation-delay: 0.2s; 
+/* 圖片層：等掉落完才顯現 */
+.bgImageOverlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  opacity: 0;
+  animation: imageFadeIn 1s ease-in forwards;
+  animation-delay: 1.5s; /* 等所有卡片掉完才開始顯現圖片 */
 }
 
-/* 讓第二張卡片晚點掉，且稍微往右歪 */
-.projectCard:nth-child(3) { 
-  --start-rot: 15deg; 
-  --end-rot: 1deg; 
-  animation-delay: 0.5s; 
-}
+/* 設定四張卡片不同的掉落延遲與角度 */
+.projectCard:nth-child(2) { --start-rot: -10deg; --end-rot: -1deg; animation-delay: 0.2s; }
+.projectCard:nth-child(3) { --start-rot: 10deg; --end-rot: 1deg; animation-delay: 0.5s; }
+.projectCard:nth-child(4) { --start-rot: -5deg; --end-rot: 0.5deg; animation-delay: 0.8s; }
+.projectCard:nth-child(5) { --start-rot: 5deg; --end-rot: -0.5deg; animation-delay: 1.1s; }
 
-/* 內容樣式 (標題與文字) */
 .projectTitle {
   font-family: 'Press Start 2P', cursive;
-  font-size: 0.9em;
-  color: #007acc;
-  margin-bottom: 15px;
+  font-size: 0.85em;
+  color: #007acc; /* 統一藍色 */
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+}
+
+.toBeContinued {
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  color: #888;
+  font-size: 0.7em;
+  padding: 20px 0;
 }
 
 .btnLink {
@@ -77,5 +83,42 @@
   padding: 8px 16px;
   text-decoration: none;
   font-family: 'Press Start 2P', cursive;
-  font-size: 0.6em;
+  font-size: 0.55em;
+  position: relative;
+  z-index: 1;
+  transition: background 0.2s;
+}
+
+.btnLink:hover {
+  background: #007acc;
+}
+
+/* --- ✅ 手機版響應式優化 (RWD) --- */
+@media (max-width: 600px) {
+  .projectsPage {
+    padding: 80px 15px 40px 15px; /* 縮小邊距 */
+  }
+
+  .projectCard {
+    padding: 25px 20px; /* ✅ 縮小卡片內距，留給文字空間 */
+    margin-bottom: 20px;
+    /* ✅ 手機上減小旋轉角度，避免卡片角落超出螢幕 */
+    --end-rot: 0deg !important; 
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15); /* 減小陰影感 */
+  }
+
+  .projectTitle {
+    font-size: 0.7em; /* 縮小像素標題 */
+    line-height: 1.4;
+  }
+
+  .btnLink {
+    padding: 6px 12px;
+    font-size: 0.5em;
+  }
+
+  .toBeContinued {
+    font-size: 0.55em;
+    padding: 10px 0;
+  }
 }

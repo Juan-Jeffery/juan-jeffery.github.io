@@ -10,22 +10,40 @@ export default function ProjectsPage() {
           <span className="prompt-symbol">{">"}</span> LOADING_PROJECTS...
         </h2>
 
-        {/* ITD Pipeline 專案 */}
+        {/* 1. ITD Pipeline */}
         <div className={styles.projectCard}>
-          <h3 className={styles.projectTitle}>ITD Mutation Analysis</h3>
-          <p style={{ fontSize: '0.9em', marginBottom: '20px' }}>
-            Bioinformatics pipeline for detecting Internal Tandem Duplications in cancer genomes using Pindel and ScanITD.
+          <div className={styles.bgImageOverlay} style={{ backgroundImage: "url('https://raw.githubusercontent.com/Juan-Jeffery/juan-jeffery.github.io/main/plot/ITD.png')" }}></div>
+          <h3 className={styles.projectTitle}>ITD Mutation Detect pipeline</h3>
+          <p style={{ position: 'relative', zIndex: 1, fontSize: '0.9em', margin: '15px 0' }}>
+            Bioinformatics pipeline for detecting Internal Tandem Duplications using Pindel and ScanITD.
           </p>
-          <a href="https://github.com/Juan-Jeffery/ITD-pipeline" target="_blank" className={styles.btnLink}>VIEW_DATA</a>
+          <a href="https://github.com/Juan-Jeffery/ITD-pipeline" target="_blank" className={styles.btnLink}>VIEW_REPO</a>
         </div>
 
-        {/* iGEM 專案 */}
+        {/* 2. iGEM GotCha */}
         <div className={styles.projectCard}>
+          <div className={styles.bgImageOverlay} style={{ backgroundImage: "url('https://raw.githubusercontent.com/Juan-Jeffery/juan-jeffery.github.io/main/plot/cir_rna.png')" }}></div>
           <h3 className={styles.projectTitle}>Circular-DNA Tool</h3>
-          <p style={{ fontSize: '0.9em', marginBottom: '20px' }}>
-            GotCha system: Optimized circular DNA design for RCA-based microRNA detection.
+          <p style={{ position: 'relative', zIndex: 1, fontSize: '0.9em', margin: '15px 0' }}>
+            GotCha system: Optimized circular DNA design for RCA-based microRNA detection (iGEM Gold).
           </p>
-          <a href="https://github.com/Juan-Jeffery/CSMU_iGEM" target="_blank" className={styles.btnLink}>VIEW_DATA</a>
+          <a href="https://github.com/Juan-Jeffery/CSMU_iGEM" target="_blank" className={styles.btnLink}>VIEW_REPO</a>
+        </div>
+
+        {/* 3. To Be Continued */}
+        <div className={styles.projectCard}>
+          <div className={styles.toBeContinued}>
+            {">"} TO BE CONTINUED...
+            <p style={{ fontFamily: 'sans-serif', fontSize: '12px', marginTop: '10px' }}>New analytical workflows in development.</p>
+          </div>
+        </div>
+
+        {/* 4. To Be Continued */}
+        <div className={styles.projectCard}>
+          <div className={styles.toBeContinued}>
+            {">"} TO BE CONTINUED...
+            <p style={{ fontFamily: 'sans-serif', fontSize: '12px', marginTop: '10px' }}>Stay tuned for more bioinformatics tools.</p>
+          </div>
         </div>
       </div>
     </section>
