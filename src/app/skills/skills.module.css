@@ -180,20 +180,43 @@
    📱 手機版響應式優化 (RWD)
 ========================================= */
 @media (max-width: 850px) { 
-  .skillsPage { 
-    /* 強制清除上方 padding，完全聽從 globals.css 的 page-container 控制 */
-    padding-top: 0 !important; 
-    padding-bottom: 40px; 
+  .skillsPage {
+    background-color: transparent !important;
+    min-height: 100vh;
+    padding: 0 15px 0px 15px; 
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
   }
   
   /* 手機版：靜態卡片佔滿寬度 */
-  .skillsGrid .statCard { 
-    width: 100%; 
-    min-height: auto; 
-    padding: 25px 20px; 
+  .skillsGrid { 
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box; /* ✅ 確保 padding 不會撐破螢幕 */
   }
   
-  /* 手機版：輪播卡片維持固定寬度，確保版面不變形 */
+@media (max-width: 850px) { 
+  
+  /* ✅ 手機版改為垂直排列 (column)，徹底解決卡片超出螢幕的問題 */
+  .skillsGrid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ✅ 強制卡片最大寬度為 100% */
+  .skillsGrid .statCard { 
+      width: 100%; 
+      max-width: 100%;
+      min-height: auto; 
+      padding: 25px 20px; 
+      box-sizing: border-box;
+  }
+    
   .carouselTrack .statCard { 
     width: 250px; 
     min-width: 250px; 

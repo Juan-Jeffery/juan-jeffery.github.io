@@ -149,8 +149,6 @@
 /* --- 📱 手機版響應式優化 --- */
 @media (max-width: 850px) {
   .expPage {
-    /* ✅ 配合 globals.css 的 100px 補償 */
-    padding-top: 0 !important; 
     padding-left: 15px;
     padding-right: 15px;
   }
