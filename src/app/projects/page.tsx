@@ -6,8 +6,8 @@ export default function ProjectsPage() {
   return (
     <section className={styles.projectsPage}>
       <div className={styles.contentWrapper}>
-        <h2 className="terminal-header" style={{ marginBottom: '50px' }}>
-          <span className="prompt-symbol">{">"}</span> LOADING_PROJECTS...
+        <h2 className="terminal-header">          
+        <span className="prompt-symbol">{">"}</span> LOADING_PROJECTS...
         </h2>
 
         {/* 1. ITD Pipeline */}

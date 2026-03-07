@@ -33,7 +33,7 @@ export default function ExperiencePage() {
     /* ✅ 套用 styles.expPage 以顯現暗黃色底色 */
     <section className={styles.expPage}>
       <div className={styles.contentWrapper}>
-        <h2 className="terminal-header" style={{ marginBottom: '50px' }}>
+        <h2 className="terminal-header" style={{marginBottom: '20px' ,marginTop: '40px' }}>
           <span className="prompt-symbol">{">"}</span> EXPERIENCE
         </h2>
 

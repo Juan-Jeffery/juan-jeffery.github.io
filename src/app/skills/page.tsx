@@ -42,8 +42,10 @@ export default function SkillsPage() {
     /* ✅ 使用 styles.skillsPage 來帶入 CSS 設定的暗黃色底色 */
     <section className={styles.skillsPage}>
       <div className={styles.contentWrapper}>
-        <h2 className="terminal-header" style={{ marginBottom: '50px' }}>
-          <span className="prompt-symbol">{">"}</span> SKILLS
+        <h2 className="terminal-header" style={{ 
+          paddingLeft: '6.5%', marginBottom: '20px' ,marginTop: '40px' 
+        }}>
+        <span className="prompt-symbol">{">"}</span> SKILLS
         </h2>
         
         <div className={styles.skillsGrid}>
