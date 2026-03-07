@@ -1,0 +1,94 @@
+/* src/app/home.module.css */
+
+.homePage {
+  background-color: #d6c5a0; /* 統一暗黃底色 */
+  min-height: 100vh;
+  padding: 80px 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.contentWrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* --- ✅ 封面區塊：改為疊加模式 --- */
+.hero {
+  position: relative; /* 讓內部的文字可以絕對定位 */
+  width: 100%;
+  max-width: 800px; /* 稍微加大一點讓 GIF 更壯觀 */
+  margin: 0 auto 60px auto;
+  border: 2px solid #111;
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  line-height: 0; /* 消除圖片下方的微小間隙 */
+}
+
+.hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.6; /* ✅ 稍微調暗 GIF，讓上面的文字更清晰 */
+  filter: grayscale(30%);
+}
+
+/* ✅ 文字層：絕對定位覆蓋在圖片上 */
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 垂直置中 */
+  align-items: center;     /* 水平置中 */
+  z-index: 2;
+  pointer-events: none;    /* 確保不會干擾滑鼠操作 */
+  background: rgba(0, 0, 0, 0.1); /* 增加一層極淡的黑幕幫助文字顯色 */
+}
+
+.heroText h1 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.8em; /* 稍微放大 */
+  color: #111;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8); /* 增加白色描邊感，防止被背景吃掉 */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.heroText p {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7em;
+  color: #007acc; /* 統一藍色 */
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+}
+
+/* --- 資訊卡片樣式維持不變 --- */
+.infoCard {
+  background-color: rgba(220, 230, 240, 0.9);
+  border: 2px solid #111;
+  padding: 40px;
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.15);
+  margin-bottom: 40px;
+}
+
+.sectionTitle {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8em;
+  color: #007acc;
+  margin-bottom: 25px;
+  display: block;
+}
+.spacer {
+  margin-bottom: 50px; /* 數值可以自行調整，20px 約等於一行 */
+}
+
+/* 手機版適應 */
+@media (max-width: 600px) {
+  .heroText h1 { font-size: 1em; letter-spacing: 1px; }
+  .heroText p { font-size: 0.5em; }
+  .infoCard { padding: 25px; }
+}
