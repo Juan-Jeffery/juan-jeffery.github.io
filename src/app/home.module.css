@@ -1,73 +1,88 @@
 /* src/app/home.module.css */
 
+/* =========================================
+   🏠 首頁主要容器
+========================================= */
 .homePage {
-  background-color: #d6c5a0; /* 統一暗黃底色 */
+  /* 確保底色透明，讓 globals.css 的吃豆人與豆子能透出來 */
+  background-color: transparent !important;
   min-height: 100vh;
-  padding: 80px 20px;
+  padding: 80px 20px 60px 20px; 
   width: 100%;
   box-sizing: border-box;
 }
 
+/* 限制內容最大寬度，讓卡片與標題保持良好的閱讀比例 */
 .contentWrapper {
   max-width: 800px;
   margin: 0 auto;
+  background-color: transparent;
 }
 
-/* --- ✅ 封面區塊：改為疊加模式 --- */
+/* =========================================
+   🖼️ 封面區塊 (Hero Section)
+========================================= */
 .hero {
-  position: relative; /* 讓內部的文字可以絕對定位 */
+  position: relative; 
   width: 100%;
-  max-width: 800px; /* 稍微加大一點讓 GIF 更壯觀 */
-  margin: 0 auto 60px auto;
-  border: 2px solid #111;
-  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.15);
+  margin: 0 auto 60px auto; /* 下方留白 60px 推開資訊卡片 */
+  border: 2px solid #111; /* 復古硬邊框 */
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.15); /* 復古像素厚陰影 */
   overflow: hidden;
-  line-height: 0; /* 消除圖片下方的微小間隙 */
+  background-color: #000; /* 確保 GIF 載入前不會白屏閃爍 */
 }
 
+/* 封面背景圖 (GIF) */
 .hero img {
   width: 100%;
   height: auto;
   display: block;
-  opacity: 0.6; /* ✅ 稍微調暗 GIF，讓上面的文字更清晰 */
-  filter: grayscale(30%);
+  opacity: 0.5; /* 壓暗背景圖片，確保上層文字清晰可讀 */
+  filter: grayscale(20%) contrast(1.1); /* 稍微降低彩度並拉高對比，增添復古科技感 */
 }
 
-/* ✅ 文字層：絕對定位覆蓋在圖片上 */
+/* =========================================
+   🔠 封面文字層 (Text Overlay)
+========================================= */
+/* 覆蓋在 GIF 上的半透明漸層黑幕 */
 .heroOverlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0; 
+  width: 100%; height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* 垂直置中 */
-  align-items: center;     /* 水平置中 */
+  justify-content: center; 
+  align-items: center;     
   z-index: 2;
-  pointer-events: none;    /* 確保不會干擾滑鼠操作 */
-  background: rgba(0, 0, 0, 0.1); /* 增加一層極淡的黑幕幫助文字顯色 */
+  pointer-events: none; /* 讓滑鼠點擊可以直接穿透到下層 (如果有連結的話) */
+  background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)); 
 }
 
+/* 主標題：JUAN - JEFFERY */
 .heroText h1 {
   font-family: 'Press Start 2P', cursive;
-  font-size: 1.8em; /* 稍微放大 */
-  color: #111;
+  font-size: 1.8em; 
+  color: #fff; /* 白色本體 */
   margin-bottom: 20px;
-  text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8); /* 增加白色描邊感，防止被背景吃掉 */
+  text-shadow: 3px 3px 0px #000; /* 強烈黑色像素描邊，確保在任何背景上都清晰 */
   text-transform: uppercase;
   letter-spacing: 2px;
+  text-align: center;
 }
 
+/* 副標題：Bioinformatics | Genomic Data Science */
 .heroText p {
   font-family: 'Press Start 2P', cursive;
-  font-size: 0.7em;
-  color: #007acc; /* 統一藍色 */
-  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+  font-size: 0.75em;
+  color: #ffcc00; /* 經典吃豆人黃色，作為視覺強調色 */
+  text-shadow: 2px 2px 0px #000;
 }
 
-/* --- 資訊卡片樣式維持不變 --- */
+/* =========================================
+   📝 資訊卡片 (Info Card)
+========================================= */
 .infoCard {
+  /* 微透的藍灰色背景，與 Skills / Experience 頁面風格統一 */
   background-color: rgba(220, 230, 240, 0.9);
   border: 2px solid #111;
   padding: 40px;
@@ -75,20 +90,46 @@
   margin-bottom: 40px;
 }
 
+/* 卡片內的區塊標題 (例如：> ABOUT ME) */
 .sectionTitle {
   font-family: 'Press Start 2P', cursive;
-  font-size: 0.8em;
-  color: #007acc;
+  font-size: 0.85em;
+  color: #007acc; /* 全站統一科技藍 */
   margin-bottom: 25px;
   display: block;
-}
-.spacer {
-  margin-bottom: 50px; /* 數值可以自行調整，20px 約等於一行 */
+  text-transform: uppercase;
 }
 
-/* 手機版適應 */
-@media (max-width: 600px) {
-  .heroText h1 { font-size: 1em; letter-spacing: 1px; }
-  .heroText p { font-size: 0.5em; }
-  .infoCard { padding: 25px; }
+/* 簡單的垂直佔位符，用來隔開 ABOUT ME 與 CONTACT */
+.spacer {
+  margin-bottom: 50px; 
+}
+
+/* =========================================
+   📱 手機版響應式優化 (RWD)
+========================================= */
+@media (max-width: 850px) {
+  .homePage {
+    /* 強制清除上方 padding，避免與 globals.css 的 100px 補償疊加導致過度下移 */
+    padding-top: 0 !important; 
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  /* 縮小封面主標題，避免手機螢幕破版折行 */
+  .heroText h1 { 
+    font-size: 1.1em; 
+    letter-spacing: 1px;
+    padding: 0 10px;
+  }
+  
+  /* 縮小副標題 */
+  .heroText p { 
+    font-size: 0.55em; 
+  }
+
+  /* 縮小卡片內距，增加手機端文字閱讀空間 */
+  .infoCard { 
+    padding: 25px 20px; 
+  }
 }

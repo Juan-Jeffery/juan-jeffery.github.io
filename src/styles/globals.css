@@ -1,82 +1,152 @@
 /* src/styles/globals.css */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fira+Code:wght@400;500&display=swap');
 
-body {
-  margin: 0;
-  font-family: "Fira Code", monospace;
-  color: #111;
-  background-color: #fff;
-  line-height: 1.6;
-}
-
-h1, h2, .skill-group-title {
-  font-family: 'Press Start 2P', cursive;
-  text-transform: uppercase;
-}
-
-/* 導覽列全站通用 */
-nav {
-  position: fixed;
-  top: 20px;
-  left: 30px;
-  z-index: 1000;
-  background: white;
-  padding: 6px 12px;
-  border: 2px solid #000;
-  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
-}
-
-.nav-link {
-  margin-right: 20px;
-  text-decoration: none;
-  font-weight: bold;
-  color: #111;
-  font-size: 0.8em;
-}
-
-.nav-link.active {
-  border-bottom: 3px solid #111; /* 找回你的 3px 底線 */
-}
-
-/* --- 全域終端機風格標題 --- */
-.terminal-header {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 1em;
-  color: #007acc; /* 統一藍色 */
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  text-transform: uppercase;
+/* --- 🎨 系統變數字典：莫蘭迪四色吃豆人 --- */
+:root {
+  --pm-y-o: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath fill='%23b5a642' d='M3 0h5v1H3zM2 1h7v1H2zM1 2h4v1H1zM7 2h3v1H7zM0 3h11v1H0zM0 4h5v1H0zM0 5h4v1H0zM0 6h5v1H0zM0 7h11v1H0zM1 8h9v1H1zM2 9h7v1H2zM3 10h5v1H3z'/%3E%3C/svg%3E");
+  --pm-y-c: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath fill='%23b5a642' d='M3 0h5v1H3zM2 1h7v1H2zM1 2h4v1H1zM7 2h3v1H7zM0 3h11v5H0zM1 8h9v1H1zM2 9h7v1H2zM3 10h5v1H3z'/%3E%3C/svg%3E");
+  --pm-r-o: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath fill='%23a67b7b' d='M3 0h5v1H3zM2 1h7v1H2zM1 2h4v1H1zM7 2h3v1H7zM0 3h11v1H0zM0 4h5v1H0zM0 5h4v1H0zM0 6h5v1H0zM0 7h11v1H0zM1 8h9v1H1zM2 9h7v1H2zM3 10h5v1H3z'/%3E%3C/svg%3E");
+  --pm-r-c: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath fill='%23a67b7b' d='M3 0h5v1H3zM2 1h7v1H2zM1 2h4v1H1zM7 2h3v1H7zM0 3h11v5H0zM1 8h9v1H1zM2 9h7v1H2zM3 10h5v1H3z'/%3E%3C/svg%3E");
+  --pm-g-o: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath fill='%238c9c76' d='M3 0h5v1H3zM2 1h7v1H2zM1 2h4v1H1zM7 2h3v1H7zM0 3h11v1H0zM0 4h5v1H0zM0 5h4v1H0zM0 6h5v1H0zM0 7h11v1H0zM1 8h9v1H1zM2 9h7v1H2zM3 10h5v1H3z'/%3E%3C/svg%3E");
+  --pm-g-c: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath fill='%238c9c76' d='M3 0h5v1H3zM2 1h7v1H2zM1 2h4v1H1zM7 2h3v1H7zM0 3h11v5H0zM1 8h9v1H1zM2 9h7v1H2zM3 10h5v1H3z'/%3E%3C/svg%3E");
+  --pm-b-o: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath fill='%237b96a6' d='M3 0h5v1H3zM2 1h7v1H2zM1 2h4v1H1zM7 2h3v1H7zM0 3h11v1H0zM0 4h5v1H0zM0 5h4v1H0zM0 6h5v1H0zM0 7h11v1H0zM1 8h9v1H1zM2 9h7v1H2zM3 10h5v1H3z'/%3E%3C/svg%3E");
+  --pm-b-c: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath fill='%237b96a6' d='M3 0h5v1H3zM2 1h7v1H2zM1 2h4v1H1zM7 2h3v1H7zM0 3h11v5H0zM1 8h9v1H1zM2 9h7v1H2zM3 10h5v1H3z'/%3E%3C/svg%3E");
   
-  /* 關鍵：精確對齊位置 */
-  margin: 0;
-  margin-bottom: 40px; /* 標題下方的間距 */
-  padding: 0;
+  --trail: linear-gradient(#d6c5a0, #d6c5a0);
 }
 
-.prompt-symbol {
-  font-weight: bold;
+/* --- 基礎設定 --- */
+html { background-color: #d6c5a0; }
+
+body {
+  margin: 0; padding: 0; font-family: "Fira Code", monospace; overflow-x: hidden; color: #111; image-rendering: pixelated;
+  /* ❌ 這裡的遮罩被我移除了，再也不會吃掉導覽列了！ */
 }
 
-/* src/styles/globals.css */
+/* 🟢 最底層：滿地圓形豆子 (移到 html::before 獨立圖層) */
+html::before {
+  content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+  background-image: radial-gradient(circle at 20px 40px, rgba(0, 0, 0, 0.12) 5px, transparent 6px);
+  background-size: 40px 80px; z-index: 0; pointer-events: none;
+  /* ✅ 遮罩只針對這個背景豆子圖層，保留頂部 80px 乾淨 */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0px, transparent 80px, black 80px, black 100%);
+  mask-image: linear-gradient(to bottom, transparent 0px, transparent 80px, black 80px, black 100%);
+}
 
+/* =========================================
+   🚀 Team Right (向右跑，單數行)
+========================================= */
+body::after {
+  content: ""; position: fixed; top: 0;
+  left: calc(-40vw - 80px); width: calc(40vw + 80px); height: 100vh;
+  z-index: 2; pointer-events: none; background-repeat: no-repeat;
+
+  background-image:
+    var(--pm-y-o), var(--pm-r-o), var(--pm-g-o), var(--pm-b-o), var(--pm-y-o), var(--pm-r-o),
+    var(--trail), var(--trail), var(--trail), var(--trail), var(--trail), var(--trail);
+
+  background-position:
+    100% 80px,                 
+    calc(100% - 15vw) 240px,   
+    calc(100% - 5vw) 400px,    
+    calc(100% - 25vw) 560px,   
+    calc(100% - 10vw) 720px,   
+    calc(100% - 20vw) 880px,   
+    0% 80px, 0% 240px, 0% 400px, 0% 560px, 0% 720px, 0% 880px;
+
+  background-size:
+    80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px,
+    calc(100% - 80px) 80px,
+    calc(100% - 15vw - 80px) 80px,
+    calc(100% - 5vw - 80px) 80px,
+    calc(100% - 25vw - 80px) 80px,
+    calc(100% - 10vw - 80px) 80px,
+    calc(100% - 20vw - 80px) 80px;
+
+  animation: move-right 16s linear infinite, chomp-right 0.3s step-end infinite;
+}
+
+/* =========================================
+   🚀 Team Left (向左跑，雙數行)
+========================================= */
+body::before {
+  content: ""; position: fixed; top: 0;
+  left: 100vw; width: calc(40vw + 80px); height: 100vh;
+  z-index: 1; pointer-events: none; background-repeat: no-repeat;
+
+  background-image:
+    var(--pm-b-o), var(--pm-g-o), var(--pm-r-o), var(--pm-y-o), var(--pm-b-o), var(--pm-g-o),
+    var(--trail), var(--trail), var(--trail), var(--trail), var(--trail), var(--trail);
+
+  background-position:
+    calc(100% - 10vw) 160px,   
+    calc(100% - 28vw) 320px,   
+    100% 480px,                
+    calc(100% - 15vw) 640px,   
+    calc(100% - 5vw) 800px,    
+    calc(100% - 22vw) 960px,   
+    0% 160px, 0% 320px, 0% 480px, 0% 640px, 0% 800px, 0% 960px;
+
+  background-size:
+    80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px,
+    calc(100% - 10vw - 80px) 80px,
+    calc(100% - 28vw - 80px) 80px,
+    calc(100% - 80px) 80px,
+    calc(100% - 15vw - 80px) 80px,
+    calc(100% - 5vw - 80px) 80px,
+    calc(100% - 22vw - 80px) 80px;
+
+  animation: move-left 18s linear 3s infinite backwards, chomp-left 0.3s step-end 3s infinite backwards;
+}
+
+/* =========================================
+   🎬 動畫腳本 (Keyframes)
+========================================= */
+
+@keyframes chomp-right {
+  0%, 100% { background-image: var(--pm-y-o), var(--pm-r-o), var(--pm-g-o), var(--pm-b-o), var(--pm-y-o), var(--pm-r-o), var(--trail), var(--trail), var(--trail), var(--trail), var(--trail), var(--trail); }
+  50% { background-image: var(--pm-y-c), var(--pm-r-c), var(--pm-g-c), var(--pm-b-c), var(--pm-y-c), var(--pm-r-c), var(--trail), var(--trail), var(--trail), var(--trail), var(--trail), var(--trail); }
+}
+
+@keyframes chomp-left {
+  0%, 100% { background-image: var(--pm-b-o), var(--pm-g-o), var(--pm-r-o), var(--pm-y-o), var(--pm-b-o), var(--pm-g-o), var(--trail), var(--trail), var(--trail), var(--trail), var(--trail), var(--trail); }
+  50% { background-image: var(--pm-b-c), var(--pm-g-c), var(--pm-r-c), var(--pm-y-c), var(--pm-b-c), var(--pm-g-c), var(--trail), var(--trail), var(--trail), var(--trail), var(--trail), var(--trail); }
+}
+
+@keyframes move-right {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(100vw + 40vw + 80px)); }
+}
+
+@keyframes move-left {
+  0% { transform: translateX(0) scaleX(-1); }
+  100% { transform: translateX(calc(-100vw - 40vw - 80px)) scaleX(-1); }
+}
+
+/* =========================================
+   🛡️ 全域容器防護罩與導覽列
+========================================= */
 .page-container {
-  margin-left: 200px; /* 電腦版側邊欄寬度 */
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* ✅ 像 Project 一樣水平置中 */
-  padding: 80px 20px;
-  box-sizing: border-box;
-  transition: all 0.3s ease;
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center; 
+  padding-top: 80px; background-color: transparent !important; box-sizing: border-box;
+  position: relative; z-index: 10; 
 }
-
 @media (max-width: 850px) {
-  .page-container {
-    margin-left: 0;
-    /* ✅ 這裡設定跟 Project 一樣的手機版頂部距離 */
-    padding-top: 100px; 
-    padding-left: 15px;
-    padding-right: 15px;
-  }
+  .page-container { padding-top: 100px; padding-left: 15px; padding-right: 15px; }
 }
+.terminal-header {
+  font-family: 'Press Start 2P', cursive; font-size: 1em; color: #007acc; display: flex; align-items: center; justify-content: flex-start;
+  width: 90%; max-width: 1000px; margin: 40px auto 40px auto; padding-left: 2%; text-transform: uppercase;
+}
+.prompt-symbol { font-weight: bold; margin-right: 15px; }
+
+/* ✅ 導覽列原封不動，這次不會被遮罩吃掉了 */
+nav {
+  position: fixed; top: 20px; left: 30px; z-index: 1000; background: white; padding: 8px 16px;
+  border: 2px solid #000; box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2); display: flex; gap: 5px; transition: all 0.1s ease;
+}
+nav:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2); }
+.nav-link { text-decoration: none; font-weight: bold; color: #111; font-size: 0.8em; padding: 4px 10px; border: 2px solid transparent; transition: all 0.1s ease; display: inline-block; }
+.nav-link:hover { background-color: #f0f8ff; color: #007acc; }
+.nav-link:active { transform: translate(1px, 1px); }
+.nav-link.active { border-bottom: 3px solid #111; color: #000; }

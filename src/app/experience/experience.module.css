@@ -1,23 +1,26 @@
 /* src/app/experience/experience.module.css */
 
 .expPage {
-  /* ✅ 與 Skills 同步：暗黃色底色 */
-  background-color: #d6c5a0; 
+  /* ✅ 背景設為透明，讓 globals.css 的 body 底色透出 */
+  background-color: transparent !important;
   min-height: 100vh;
-  padding: 100px 20px 60px 20px; /* 確保頂部間距一致 */
+  /* ✅ 移除頂部 padding，由全域 .page-container 統一控制 */
+  padding: 0 20px 60px 20px; 
   width: 100%;
   box-sizing: border-box;
 }
 
-/* 內容限制容器 */
 .contentWrapper {
   max-width: 800px;
   margin: 0 auto;
+  /* ✅ 確保容器不帶背景 */
+  background-color: transparent;
 }
 
-/* 終端機模擬器：改為淡灰藍 + 半透明 */
+/* --- 📟 終端機視窗優化 --- */
 .terminalWindow {
-  background-color: rgba(220, 230, 240, 0.85); /* ✅ 淡灰藍半透明 */
+  /* ✅ 使用半透明灰藍色，與 Skills 卡片風格同步 */
+  background-color: rgba(220, 230, 240, 0.85); 
   border: 2px solid #111;
   padding: 30px;
   box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.15);
@@ -25,23 +28,67 @@
   font-family: "Fira Code", monospace;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(2px); /* 增加一點點毛玻璃感 */
+  backdrop-filter: blur(2px); /* 輕微毛玻璃感提升質感 */
 }
 
+/* ✅ 右上角 EXP 狀態框 */
+.expLevelBox {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: 2px solid #007acc;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.6);
+  font-family: 'Press Start 2P', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.levelText {
+  font-size: 0.55em;
+  color: #007acc;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+/* 經驗條動畫 */
+.expBarSmall {
+  width: 60px;
+  height: 8px;
+  background: #333;
+  border: 1px solid #111;
+  position: relative;
+  overflow: hidden;
+}
+
+.expFillSmall {
+  height: 100%;
+  background: #7cfc00;
+  width: 0%;
+  animation: gainExp 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes gainExp {
+  0% { width: 0%; }
+  70%, 100% { width: 100%; }
+}
+
+/* --- ⌨️ 文字與內容樣式 --- */
 .commandPrompt {
-  color: #007acc; /* 終端機經典藍 */
+  color: #007acc;
   font-weight: bold;
   margin-bottom: 20px;
+  font-size: 0.95em;
 }
 
 .typingText {
   white-space: pre-wrap;
   line-height: 1.8;
-  display: inline-block;
-  color: #333;
+  color: #222;
 }
 
-/* 閃爍游標 */
 .cursor {
   display: inline-block;
   width: 10px;
@@ -58,9 +105,9 @@
 }
 
 .expItem {
-  margin-top: 30px;
-  padding-left: 15px;
-  border-left: 2px solid #007acc;
+  margin-top: 35px;
+  padding-left: 20px;
+  border-left: 3px solid #007acc; /* 強化側邊條視覺 */
   position: relative;
   z-index: 1;
 }
@@ -69,9 +116,10 @@
   background: #111;
   color: #fff;
   font-family: 'Press Start 2P', cursive;
-  font-size: 0.65em;
-  padding: 4px 8px;
-  margin-right: 10px;
+  font-size: 0.6em;
+  padding: 4px 10px;
+  margin-right: 12px;
+  vertical-align: middle;
 }
 
 .institution {
@@ -81,83 +129,47 @@
 }
 
 .achievementList {
-  list-style-type: "> ";
-  padding-left: 20px;
-  margin-top: 10px;
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 15px;
+}
+
+.achievementList li::before {
+  content: "> ";
+  color: #007acc;
+  font-weight: bold;
 }
 
 .achievementList li {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-size: 0.9em;
-  color: #222;
+  color: #333;
 }
 
-/* RWD 適應 */
-@media (max-width: 600px) {
-  .terminalWindow { padding: 15px; }
-  .expPage { padding: 40px 15px; }
-}
+/* --- 📱 手機版響應式優化 --- */
+@media (max-width: 850px) {
+  .expPage {
+    /* ✅ 配合 globals.css 的 100px 補償 */
+    padding-top: 0 !important; 
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 
-.terminalWindow {
-  background-color: rgba(220, 230, 240, 0.85); /* 保持淡灰藍半透明 */
-  border: 2px solid #111;
-  padding: 30px;
-  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.15);
-  min-height: 500px;
-  position: relative; /* ✅ 這是關鍵，讓右上角框框定位 */
-  overflow: hidden;
-}
+  .terminalWindow { 
+    padding: 20px 15px;
+    min-height: 450px;
+  }
 
-/* ✅ 右上角藍色像素框 */
-.expLevelBox {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  border: 2px solid #007acc; /* 與標題一致的藍色 */
-  padding: 5px 10px;
-  background: rgba(255, 255, 255, 0.5);
-  font-family: 'Press Start 2P', cursive;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 10;
-}
-
-.levelText {
-  font-size: 0.5em;
-  color: #007acc;
-  margin-bottom: 5px;
-}
-
-/* ✅ 經驗值增加動畫 */
-.expBarSmall {
-  width: 50px;
-  height: 6px;
-  background: #333;
-  border: 1px solid #111;
-  position: relative;
-  overflow: hidden;
-}
-
-.expFillSmall {
-  height: 100%;
-  background: #7cfc00;
-  width: 0%;
-  animation: gainExp 2s linear infinite; /* 2秒循環一次增加感 */
-}
-
-@keyframes gainExp {
-  0% { width: 0%; }
-  80% { width: 100%; }
-  100% { width: 100%; }
-}
-
-/* 手機版適應：縮小框框位置或大小 */
-@media (max-width: 600px) {
   .expLevelBox {
-    top: 5px;
-    right: 5px;
-    padding: 3px 6px;
-    scale: 0.8;
+    top: 10px;
+    right: 10px;
+    transform: scale(0.85); /* 稍微縮小避免擋到指令文字 */
+    transform-origin: top right;
+  }
+  
+  .degreeTag {
+    display: block;
+    width: fit-content;
+    margin-bottom: 8px;
   }
 }
