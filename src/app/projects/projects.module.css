@@ -1,0 +1,81 @@
+/* src/app/projects/projects.module.css */
+
+.projectsPage {
+  background-color: #d6c5a0; /* 保持暗黃底色 */
+  min-height: 100vh;
+  padding: 100px 20px 60px 20px;
+  overflow-x: hidden; /* 防止旋轉時出現橫向捲軸 */
+}
+
+.contentWrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ✅ 掉落動畫核心 */
+@keyframes dropDown {
+  0% {
+    transform: translateY(-100vh) rotate(var(--start-rot));
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(20px) rotate(var(--end-rot));
+  }
+  80% {
+    transform: translateY(-10px) rotate(var(--end-rot));
+  }
+  100% {
+    transform: translateY(0) rotate(var(--end-rot));
+    opacity: 1;
+  }
+}
+
+.projectCard {
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  margin-bottom: 30px;
+  padding: 40px;
+  background-color: rgba(220, 230, 240, 0.9); /* 灰藍半透明 */
+  border: 2px solid #111;
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.15);
+  
+  /* ✅ 動畫設定 */
+  opacity: 0;
+  animation: dropDown 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* 讓第一張卡片先掉，且稍微往左歪 */
+.projectCard:nth-child(2) { 
+  --start-rot: -15deg; 
+  --end-rot: -1deg; 
+  animation-delay: 0.2s; 
+}
+
+/* 讓第二張卡片晚點掉，且稍微往右歪 */
+.projectCard:nth-child(3) { 
+  --start-rot: 15deg; 
+  --end-rot: 1deg; 
+  animation-delay: 0.5s; 
+}
+
+/* 內容樣式 (標題與文字) */
+.projectTitle {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.9em;
+  color: #007acc;
+  margin-bottom: 15px;
+}
+
+.btnLink {
+  display: inline-block;
+  background: #111;
+  color: #fff;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6em;
+}
