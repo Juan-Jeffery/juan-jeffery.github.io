@@ -3,7 +3,6 @@
 import styles from './skills.module.css';
 
 export default function SkillsPage() {
-  // ✅ 抽離內容組件，確保輪播的兩份內容完全一致且同步
   const CarouselContent = () => (
     <>
       <StatCard title="Pipeline development" tool="book">
@@ -43,7 +42,7 @@ export default function SkillsPage() {
     /* ✅ 使用 styles.skillsPage 來帶入 CSS 設定的暗黃色底色 */
     <section className={styles.skillsPage}>
       <div className={styles.contentWrapper}>
-        <h2 className="terminal-header">
+        <h2 className="terminal-header" style={{ marginBottom: '50px' }}>
           <span className="prompt-symbol">{">"}</span> SKILLS
         </h2>
         
