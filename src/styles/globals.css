@@ -58,10 +58,25 @@ nav {
   font-weight: bold;
 }
 
-/* 確保頁面容器頂部間距也一致 */
+/* src/styles/globals.css */
+
 .page-container {
-  padding: 100px 20px 60px 20px; /* 100px 確保不被導覽列遮住 */
-  max-width: 1000px;
-  margin: 0 auto;
+  margin-left: 200px; /* 電腦版側邊欄寬度 */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* ✅ 像 Project 一樣水平置中 */
+  padding: 80px 20px;
   box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 850px) {
+  .page-container {
+    margin-left: 0;
+    /* ✅ 這裡設定跟 Project 一樣的手機版頂部距離 */
+    padding-top: 100px; 
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
