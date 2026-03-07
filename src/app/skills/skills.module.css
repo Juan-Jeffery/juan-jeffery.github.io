@@ -180,42 +180,58 @@
    📱 手機版響應式優化 (RWD)
 ========================================= */
 @media (max-width: 850px) {
-  /* 1. 頁面容器 */
-  .skillsPage { /* ✅ 這裡要寫 skillsPage，不能寫 projectsPage 喔！ */
-    padding-left: 15px;
-    padding-right: 15px;
-    /* ✅ 強制清除電腦版的 60px 底部留白，解決底部一大塊空白的問題 */
-    padding-bottom: 10px; 
+  
+  /* 1. 頁面全域容器：鎖死寬度，絕對不准超出螢幕 */
+  .skillsPage {
+    width: 100%;
+    max-width: 100vw;
+    padding: 0 15px 10px 15px !important; /* 確保底部只留 10px */
+    box-sizing: border-box;
+    overflow-x: hidden; /* 🔥 殺手鐧 1：砍掉任何往左右超出的元素，強迫變回手機比例 */
   }
 
-  /* 2. 靜態網格容器 (讓兩張卡並排) */
+  /* 2. 內容包裝器：強迫遵守 100% 寬度 */
+  .contentWrapper {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* 3. 靜態網格容器 (垂直上下堆疊) */
   .skillsGrid {
-    flex-direction: row; /* ✅ 恢復水平並排 */
-    justify-content: space-between; /* 讓兩張卡片自動靠左右對齊 */
-    gap: 10px; /* 縮小卡片間距以擠進手機螢幕 */
-    margin-bottom: 20px; /* 縮小與下方輪播圖的距離 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
-  /* 3. 靜態卡片本體 (上方兩張大卡) */
+  /* 4. 靜態卡片本體 (上方兩張大卡，完美貼合手機) */
   .skillsGrid .statCard {
-    /* ✅ 神奇比例：自動抓取螢幕一半的寬度再扣掉間距，視覺上等同 200px，且絕對不會破版！ */
-    width: calc(50% - 5px); 
+    width: 100%;
+    max-width: 100%;
     min-height: auto;
-    padding: 20px 15px; /* 稍微縮小內距，讓裡面的血條放得下 */
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1); /* 比照 Projects 頁面，縮小陰影比例 */
+    padding: 25px 20px;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1); /* 縮小陰影 */
+    box-sizing: border-box;
+    margin: 0; /* 🔥 殺手鐧 2：清除任何可能撐破版面的多餘外距 */
   }
 
-  /* 4. 底部輪播區塊 */
+  /* 5. 輪播區塊外框：這個最容易闖禍，必須嚴格看管 */
   .carouselViewport {
-    /* ✅ 大幅修剪輪播區塊的上下留白，讓底部更緊湊 */
-    padding: 10px 0; 
+    width: 100%;
+    max-width: 100vw;
+    padding: 10px 0;
+    overflow: hidden; /* 🔥 殺手鐧 3：確保超長的輪播圖只在內部滑動，不會撐寬整個網頁 */
+    box-sizing: border-box;
   }
 
-  /* 5. 輪播卡片 (下方圖卡) */
+  /* 6. 輪播卡片 (下方圖卡，維持橫向滑動) */
   .carouselTrack .statCard {
-    /* 下方維持橫向滑動的設計，寬度保持不變 */
     width: 250px;
     min-width: 250px;
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1); /* 一併縮小陰影 */
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
   }
 }
