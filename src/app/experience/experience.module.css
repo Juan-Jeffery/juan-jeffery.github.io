@@ -34,7 +34,7 @@
 /* ✅ 右上角 EXP 狀態框 */
 .expLevelBox {
   position: absolute;
-  top: 15px;
+  top: 50px;
   right: 15px;
   border: 2px solid #007acc;
   padding: 8px 12px;
