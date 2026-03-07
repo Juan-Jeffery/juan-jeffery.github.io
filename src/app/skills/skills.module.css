@@ -1,45 +1,58 @@
 /* src/app/skills/skills.module.css */
 
+/* =========================================
+   📂 技能頁面主要容器
+========================================= */
 .skillsPage {
-  /* ✅ 整頁底色：暗黃色 (Retro Parchment) */
-  background-color: #d6c5a0; 
+  /* ✅ 透明背景：確保 globals.css 的莫蘭迪吃豆人能完美透出 */
+  background-color: transparent !important;
   min-height: 100vh;
-  padding: 100px 15px 60px 15px; /* 增加頂部間距確保不被導覽列遮擋 */
+  /* 頂部留白設為 0，整體推擠交由全域 .page-container 統一控制 */
+  padding: 0 15px 60px 15px; 
   width: 100%;
   box-sizing: border-box;
+  /* 層級設定：確保內容在背景動畫之上 */
+  position: relative;
 }
 
-/* ✅ 讓內容在中間 */
+/* 內容限制器：維持網格區塊的最大寬度與置中 */
 .contentWrapper {
   max-width: 1000px;
+  background-color: transparent !important;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
 }
 
-.promptSymbol {
-  font-weight: bold;
-}
-
-/* --- 上方網格佈局 --- */
+/* =========================================
+   📊 靜態技能網格 (Skills Grid)
+========================================= */
 .skillsGrid { 
   display: flex;
   justify-content: center;
   gap: 20px;
   margin-bottom: 40px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
+/* 靜態卡片的尺寸設定 (較寬) */
 .skillsGrid .statCard {
   width: 420px;
   min-height: 300px;
   padding: 35px;
 }
 
-/* --- 下方輪播佈局 --- */
+/* =========================================
+   🔄 無縫輪播區塊 (Carousel)
+========================================= */
 .carouselViewport {
   width: 100%;
   overflow: hidden;
   position: relative;
   padding: 20px 0;
+  background-color: transparent;
 }
 
 .carouselTrack {
@@ -47,12 +60,16 @@
   gap: 15px;
   width: max-content;
   animation: infiniteScroll 25s linear infinite;
+  /* ✅ 效能優化：強制開啟 GPU 加速，讓長條輪播圖不卡頓 */
+  will-change: transform; 
 }
 
+/* UX 優化：滑鼠懸停時暫停動畫，方便使用者閱讀生信分析細節 */
 .carouselTrack:hover {
   animation-play-state: paused;
 }
 
+/* 輪播卡片的尺寸設定 (較窄，適合橫向滾動) */
 .carouselTrack .statCard {
   width: 250px;
   min-width: 250px;
@@ -62,27 +79,29 @@
 
 @keyframes infiniteScroll {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } /* ✅ 無縫循環 */
+  /* 移動到 -50% 達成無縫循環 (因為 React 裡面放了兩組 CarouselContent) */
+  100% { transform: translateX(-50%); } 
 }
 
-/* --- 通用卡牌基礎樣式 --- */
+/* =========================================
+   📇 卡牌基礎樣式 (StatCard)
+========================================= */
 .statCard {
-  /* ✅ 卡片底色：淡灰藍 + 半透明 (RGBA)，確保不蓋過動畫 */
+  /* 半透明背景：讓底下的豆子與軌跡能隱約透出，增加層次感 */
   background-color: rgba(220, 230, 240, 0.85); 
   border: 2px solid #000;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  perspective: 1200px;
+  perspective: 1200px; /* 為內部的 3D 像素圖示提供透視空間 */
   box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.15);
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   box-sizing: border-box;
 }
 
 .statCard:hover {
   transform: translate(-2px, -2px);
-  /* ✅ 懸停時顏色加深 */
   background-color: rgba(200, 215, 230, 0.95);
   box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.2);
 }
@@ -90,21 +109,25 @@
 .statHeader {
   font-family: 'Press Start 2P', cursive;
   font-size: 0.55em;
-  color: #444; /* 稍微加深文字顏色以利閱讀 */
+  color: #444;
   padding-bottom: 12px;
   border-bottom: 1px dashed rgba(0,0,0,0.2);
   margin-bottom: 25px;
   text-transform: uppercase;
 }
 
-/* 3D 旋轉圖騰 */
+/* =========================================
+   ⚔️ 3D 旋轉像素裝飾 (CSS Pixel Art)
+========================================= */
 .pixelContainer3d { 
-  position: absolute; top: 50%; left: 50%; 
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
   transform-style: preserve-3d; 
   animation: mcRotate 10s linear infinite; 
-  /* ✅ 調深透明度，確保在灰藍背景上清晰可見 */
-  opacity: 0.2; 
-  z-index: 0; pointer-events: none; 
+  opacity: 0.2; /* 調低透明度作為背景浮水印 */
+  z-index: 0; 
+  pointer-events: none; 
 }
 
 @keyframes mcRotate { 
@@ -112,25 +135,67 @@
   100% { transform: translate(-50%, -50%) rotateY(360deg) scale(6); } 
 }
 
-/* 像素圖示：box-shadow 繪圖 */
+/* 像素繪圖基底 */
 .pixelItem { width: 4px; height: 4px; background: transparent; }
+
+/* 劍、釘錘、書本的 Box-shadow 像素畫 (保持單行以節省空間) */
 .mcSword { box-shadow: 8px -8px #000, 12px -12px #000, 16px -16px #000, 20px -20px #000, 8px -12px #4deeea, 12px -16px #4deeea, 16px -20px #4deeea, 4px -8px #33b1b1, 8px -16px #33b1b1, 12px -20px #33b1b1, 0px 0px #000, 4px 4px #000, -4px -4px #000, -4px 4px #7a5230, -8px 8px #7a5230, -12px 12px #000; }
 .mcMace { box-shadow: -4px -12px #000, 0px -12px #000, 4px -12px #000, -8px -8px #000, -4px -8px #4deeea, 0px -8px #4deeea, 4px -8px #4deeea, 8px -8px #000, -8px -4px #000, -4px -4px #33b1b1, 0px -4px #33b1b1, 4px -4px #33b1b1, 8px -4px #000, -4px 0px #000, 0px 0px #000, 4px 0px #000, 0px 4px #7a5230, 0px 8px #7a5230, 0px 12px #000; }
 .mcBook { box-shadow: -8px -4px #000, -4px -4px #000, 0px -4px #000, 4px -4px #000, -8px 0px #000, -4px 0px #fff, 0px 0px #fff, 4px 0px #fff, 8px 0px #000, -8px 4px #000, -4px 4px #a200ff, 0px 4px #a200ff, 4px 4px #fff, 8px 4px #000, -8px 8px #000, -4px 8px #000, 0px 8px #000, 4px 8px #000, 0px 4px #7a5230; }
 
-/* 經驗條 */
-.expBarLabel { display: flex; justify-content: space-between; font-size: 0.75em; font-weight: bold; margin-top: 15px; color: #333; }
-.expBarBg { height: 10px; background: #333; border: 1px solid #000; margin: 4px 0 8px 0; overflow: hidden; position: relative; width: 100%; }
-.expBarFill { height: 100%; background-color: #7cfc00; background-image: repeating-linear-gradient(90deg, transparent, transparent 14px, rgba(0, 0, 0, 0.4) 14px, rgba(0, 0, 0, 0.4) 16px); }
+/* =========================================
+   📈 內部排版：經驗值條與標籤
+========================================= */
+.expBarLabel { 
+  display: flex; justify-content: space-between; 
+  font-size: 0.75em; font-weight: bold; margin-top: 15px; color: #333; 
+}
 
-/* 標籤 */
-.tagContainer { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; margin-bottom: 10px; }
-.pixelTag { background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(0,0,0,0.1); padding: 1px 6px; font-size: 0.65em; }
-.subSectionTitle { font-size: 0.7em; font-weight: bold; margin-top: 12px; margin-bottom: 5px; color: #007acc; }
+.expBarBg { 
+  height: 10px; background: #333; border: 1px solid #000; 
+  margin: 4px 0 8px 0; overflow: hidden; position: relative; width: 100%; 
+}
 
-/* --- ✅ 手機版適應 --- */
+/* ✅ 巧妙利用 repeating-linear-gradient 畫出 8-bit 分格的血條感 */
+.expBarFill { 
+  height: 100%; background-color: #7cfc00; 
+  background-image: repeating-linear-gradient(90deg, transparent, transparent 14px, rgba(0, 0, 0, 0.4) 14px, rgba(0, 0, 0, 0.4) 16px); 
+}
+
+.subSectionTitle { 
+  font-size: 0.7em; font-weight: bold; margin-top: 12px; margin-bottom: 5px; color: #007acc; 
+}
+
+.tagContainer { 
+  display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; margin-bottom: 10px; 
+}
+
+.pixelTag { 
+  background: rgba(255, 255, 255, 0.4); 
+  border: 1px solid rgba(0,0,0,0.1); 
+  padding: 1px 6px; font-size: 0.65em; 
+}
+
+/* =========================================
+   📱 手機版響應式優化 (RWD)
+========================================= */
 @media (max-width: 850px) { 
-  .skillsPage { padding: 40px 15px; }
-  .skillsGrid .statCard { width: 100%; min-height: auto; padding: 25px 20px; }
-  .carouselTrack .statCard { width: 250px; min-width: 250px; }
+  .skillsPage { 
+    /* 強制清除上方 padding，完全聽從 globals.css 的 page-container 控制 */
+    padding-top: 0 !important; 
+    padding-bottom: 40px; 
+  }
+  
+  /* 手機版：靜態卡片佔滿寬度 */
+  .skillsGrid .statCard { 
+    width: 100%; 
+    min-height: auto; 
+    padding: 25px 20px; 
+  }
+  
+  /* 手機版：輪播卡片維持固定寬度，確保版面不變形 */
+  .carouselTrack .statCard { 
+    width: 250px; 
+    min-width: 250px; 
+  }
 }
