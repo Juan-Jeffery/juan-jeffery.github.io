@@ -110,8 +110,6 @@
 ========================================= */
 @media (max-width: 850px) {
   .homePage {
-    /* 強制清除上方 padding，避免與 globals.css 的 100px 補償疊加導致過度下移 */
-    padding-top: 0 !important; 
     padding-left: 15px;
     padding-right: 15px;
   }

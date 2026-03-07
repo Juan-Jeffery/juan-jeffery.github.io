@@ -145,8 +145,6 @@
 ========================================= */
 @media (max-width: 850px) {
   .projectsPage {
-    /* 強制清除上方 padding，避免與全域補償衝突 */
-    padding-top: 0 !important; 
     padding-left: 15px;
     padding-right: 15px;
   }
