@@ -1,104 +1,213 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './projects.module.css';
 
-/**
- * ProjectsPage Component
- * * 專案作品集頁面：展示個人開發的生物資訊工具與研究項目。
- * 採用終端機風格標題，並配合 CSS Module 實作卡片掉落與漸顯動畫。
- */
 export default function ProjectsPage() {
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const toggleCategory = (category: string) => {
+    setActiveCategory(prev => prev === category ? null : category);
+  };
+
   return (
-    /* ✅ 統一容器：page-container 確保全站頁面切換時，標題與外距完美對齊 */
     <section className={`page-container ${styles.projectsPage}`}>
       <div className={styles.contentWrapper}>
         
-        {/* =========================================
-             🖥️ 頁面標題 (Terminal Style)
-        ========================================= */}
         <h2 className="terminal-header">          
-          <span className="prompt-symbol">{">"}</span> LOADING_PROJECTS...
+          <span className="prompt-symbol">{">"}</span> Project
         </h2>
 
         {/* =========================================
-             🧬 專案卡片 1：ITD Pipeline 
+             節點 1：Bioinformatics (4張卡)
         ========================================= */}
-        {/* 優化：改用 <article> 提升 HTML5 語意與 SEO */}
-        <article className={styles.projectCard}>
-          
-          {/* 背景圖層：加入 role="img" 提升無障礙體驗 (a11y) */}
+        <div className={`${styles.nodeWrapper} ${styles.flyInLeft}`}>
           <div 
-            className={styles.bgImageOverlay} 
-            role="img"
-            aria-label="ITD Pipeline Visualization"
-            style={{ backgroundImage: "url('https://raw.githubusercontent.com/Juan-Jeffery/juan-jeffery.github.io/main/plot/ITD.png')" }}
-          ></div>
-          
-          <h3 className={styles.projectTitle}>ITD Mutation Detect pipeline</h3>
-          
-          {/* 專案描述：設定 z-index 確保文字在背景圖之上 */}
-          <p style={{ position: 'relative', zIndex: 1, fontSize: '0.85em', margin: '15px 0', lineHeight: '1.4' }}>
-            Bioinformatics pipeline for detecting Internal Tandem Duplications using Pindel and ScanITD.
-          </p>
-          
-          {/* ✅ 外部連結安全優化：加入 rel="noopener noreferrer" 避免安全漏洞 */}
-          <a 
-            href="https://github.com/Juan-Jeffery/ITD-pipeline" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className={styles.btnLink}
+            className={`${styles.categoryRect} ${styles.pos1} ${activeCategory === 'bio' ? styles.activeRect : ''}`}
+            style={{ '--glow-color': 'rgba(123, 150, 166, 0.8)' } as React.CSSProperties} 
+            onClick={() => toggleCategory('bio')}
           >
-            VIEW_REPO
-          </a>
-        </article>
+            <span>Bioinformatics</span>
+          </div>
+
+          <div className={`${styles.accordionContent} ${activeCategory === 'bio' ? styles.open : ''}`}>
+            {activeCategory === 'bio' && (
+              <>
+                <article className={styles.projectCard}>
+                  <div className={styles.bgImageOverlay} role="img" style={{ backgroundImage: "url('https://raw.githubusercontent.com/Juan-Jeffery/juan-jeffery.github.io/main/plot/cir_rna.png')" }}></div>
+                  <h3 className={styles.projectTitle}>GotCha System (circular DNA design)</h3>
+                  <p style={{ position: 'relative', zIndex: 1, fontSize: '0.85em', margin: '15px 0', lineHeight: '1.4', color: '#333' }}>
+                    Optimized circular DNA design tool for RCA-based microRNA detection (iGEM Gold).
+                  </p>
+                  <a href="https://github.com/Juan-Jeffery/CSMU_iGEM" target="_blank" rel="noopener noreferrer" className={styles.btnLink}>check here</a>
+                </article>
+
+                <article className={styles.projectCard}>
+                  <div className={styles.bgImageOverlay} role="img" style={{ backgroundImage: "url('https://raw.githubusercontent.com/Juan-Jeffery/juan-jeffery.github.io/main/plot/ITD.png')" }}></div>
+                  <h3 className={styles.projectTitle}>ITD Mutation Pipeline</h3>
+                  <p style={{ position: 'relative', zIndex: 1, fontSize: '0.85em', margin: '15px 0', lineHeight: '1.4', color: '#333' }}>
+                    Bioinformatics pipeline for detecting Internal Tandem Duplications using Pindel, Genomonitdetector and ScanITD.
+                  </p>
+                  <a href="https://github.com/Juan-Jeffery/ITD-pipeline" target="_blank" rel="noopener noreferrer" className={styles.btnLink}>check here</a>
+                </article>
+
+                <article className={styles.projectCard}>
+                  <div className={styles.bgImageOverlay} role="img" style={{ backgroundImage: "url('https://raw.githubusercontent.com/Juan-Jeffery/juan-jeffery.github.io/main/plot/dna.png')" }}></div>
+                  <h3 className={styles.projectTitle}>DNA variant calling pipeline</h3>
+                  <p style={{ position: 'relative', zIndex: 1, fontSize: '0.85em', margin: '15px 0', lineHeight: '1.4', color: '#333' }}>
+                    Using Linux environment, built a pipeline for calling DNA variants from sequencing data.
+                  </p>
+                  <a href="https://github.com/Juan-Jeffery/DNA_Variant_Calling_pipeline" target="_blank" rel="noopener noreferrer" className={styles.btnLink}>check here</a>
+                </article>
+
+                <article className={styles.projectCard}>
+                  <div className={styles.bgImageOverlay} role="img" style={{ backgroundImage: "url('https://raw.githubusercontent.com/Juan-Jeffery/juan-jeffery.github.io/main/plot/MR.png')" }}></div>
+                  <h3 className={styles.projectTitle}>GWAS MR Analysis Pipeline</h3>
+                  <p style={{ position: 'relative', zIndex: 1, fontSize: '0.85em', margin: '15px 0', lineHeight: '1.4', color: '#333' }}>
+                    Automated R pipeline for Mendelian Randomization on GWAS summary statistics with strict LD clumping.
+                  </p>
+                  <a href="https://github.com/Juan-Jeffery/GWAS_MR_pipeline" target="_blank" rel="noopener noreferrer" className={styles.btnLink}>check here</a>
+                </article>
+
+              </>
+            )}
+          </div>
+        </div>
 
         {/* =========================================
-             🧬 專案卡片 2：iGEM GotCha (2021 金牌)
+             節點 2：Web Apps (2張卡)
         ========================================= */}
-        <article className={styles.projectCard}>
+        <div className={`${styles.nodeWrapper} ${styles.flyInRight}`}>
           <div 
-            className={styles.bgImageOverlay} 
-            role="img"
-            aria-label="Circular-DNA Tool Visualization"
-            style={{ backgroundImage: "url('https://raw.githubusercontent.com/Juan-Jeffery/juan-jeffery.github.io/main/plot/cir_rna.png')" }}
-          ></div>
-          
-          <h3 className={styles.projectTitle}>Circular-DNA Tool</h3>
-          <p style={{ position: 'relative', zIndex: 1, fontSize: '0.85em', margin: '15px 0', lineHeight: '1.4' }}>
-            GotCha system: Optimized circular DNA design for RCA-based microRNA detection (iGEM Gold).
-          </p>
-          
-          <a 
-            href="https://github.com/Juan-Jeffery/CSMU_iGEM" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className={styles.btnLink}
+            className={`${styles.categoryRect} ${styles.pos2} ${activeCategory === 'app' ? styles.activeRect : ''}`}
+            style={{ '--glow-color': 'rgba(140, 156, 118, 0.8)' } as React.CSSProperties}
+            onClick={() => toggleCategory('app')}
           >
-            VIEW_REPO
-          </a>
-        </article>
+            <span>Web Apps</span>
+          </div>
+
+          <div className={`${styles.accordionContent} ${activeCategory === 'app' ? styles.open : ''}`}>
+            {activeCategory === 'app' && (
+              <>
+                <article className={styles.projectCard}>
+                  <div className={styles.bgImageOverlay} role="img" style={{ backgroundImage: "url('https://raw.githubusercontent.com/Juan-Jeffery/juan-jeffery.github.io/main/plot/Chef_Assistant.png')" }}></div>
+                  <h3 className={styles.projectTitle}>Chef's Assistant</h3>
+                  <p style={{ position: 'relative', zIndex: 1, fontSize: '0.85em', margin: '15px 0', lineHeight: '1.4', color: '#333' }}>
+                    A weekly planner and recipe management application with an intuitive frontend interface.
+                  </p>
+                  <a href="https://juan-jeffery.github.io/Chef-s_Assistant/" target="_blank" rel="noopener noreferrer" className={styles.btnLink}>Get started</a>
+                </article>
+
+                {/* ✅ 新增第 2 張 Web App 卡片 */}
+                <article className={styles.projectCard}>
+                  <div className={styles.bgImageOverlay} role="img" style={{ backgroundImage: "url('https://raw.githubusercontent.com/Juan-Jeffery/juan-jeffery.github.io/main/plot/Bridge_go.png')" }}></div>
+                  <h3 className={styles.projectTitle}>Bridge go (Under development)</h3>
+                  <p style={{ position: 'relative', zIndex: 1, fontSize: '0.85em', margin: '15px 0', lineHeight: '1.4', color: '#333' }}>
+                    A bridge game for four players, tense, exciting, and full of special effects.
+                  </p>
+                  <a href="https://juan-jeffery.github.io/Bridge_go/" target="_blank" rel="noopener noreferrer" className={styles.btnLink}>Get started</a>
+                </article>
+              </>
+            )}
+          </div>
+        </div>
 
         {/* =========================================
-             🚧 專案卡片 3 & 4：未來擴展區塊 (Placeholder)
+             節點 3：Other Projects (1張卡)
         ========================================= */}
-        <article className={styles.projectCard}>
-          <div className={styles.toBeContinued}>
-            {">"} TO BE CONTINUED...
-            <p style={{ fontFamily: 'sans-serif', fontSize: '11px', marginTop: '10px', opacity: 0.8 }}>
-              New analytical workflows in development.
-            </p>
+        <div className={`${styles.nodeWrapper} ${styles.flyInLeft}`}>
+          <div 
+            className={`${styles.categoryRect} ${styles.pos3} ${activeCategory === 'other' ? styles.activeRect : ''}`}
+            style={{ '--glow-color': 'rgba(181, 166, 66, 0.8)' } as React.CSSProperties}
+            onClick={() => toggleCategory('other')}
+          >
+            <span>Other Projects</span>
           </div>
-        </article>
 
-        <article className={styles.projectCard}>
-          <div className={styles.toBeContinued}>
-            {">"} TO BE CONTINUED...
-            <p style={{ fontFamily: 'sans-serif', fontSize: '11px', marginTop: '10px', opacity: 0.8 }}>
-              Stay tuned for more bioinformatics tools.
-            </p>
+          <div className={`${styles.accordionContent} ${activeCategory === 'other' ? styles.open : ''}`}>
+            {activeCategory === 'other' && (
+              <article className={styles.projectCard}>
+                <h3 className={styles.projectTitle}>Calculator</h3>
+                <p style={{ position: 'relative', zIndex: 1, fontSize: '0.85em', margin: '15px 0', lineHeight: '1.4', color: '#333' }}>
+                  A collection of specialized calculators for scientific and mathematical applications.
+                </p>
+                <a href="https://github.com/Juan-Jeffery/Calculator" target="_blank" rel="noopener noreferrer" className={styles.btnLink}>VIEW_GITHUB</a>
+              </article>
+            )}
           </div>
-        </article>
+        </div>
+
+        {/* =========================================
+             節點 4：To Be Continued 1 (1張卡)
+        ========================================= */}
+        <div className={`${styles.nodeWrapper} ${styles.flyInRight}`}>
+          <div 
+            className={`${styles.categoryRect} ${styles.pos4} ${activeCategory === 'tbc1' ? styles.activeRect : ''}`}
+            style={{ '--glow-color': 'rgba(160, 160, 160, 0.8)' } as React.CSSProperties}
+            onClick={() => toggleCategory('tbc1')}
+          >
+            <span>To Be<br/><br/>Continued</span>
+          </div>
+
+          <div className={`${styles.accordionContent} ${activeCategory === 'tbc1' ? styles.open : ''}`}>
+            {activeCategory === 'tbc1' && (
+              <article className={styles.projectCard}>
+                <h3 className={styles.projectTitle} style={{ color: '#888' }}>To Be Continued</h3>
+                <p style={{ position: 'relative', zIndex: 1, fontSize: '0.85em', margin: '15px 0', lineHeight: '1.4', color: '#555' }}>
+                  To Be Continued
+                </p>
+              </article>
+            )}
+          </div>
+        </div>
+
+        {/* =========================================
+             節點 5：To Be Continued 2 (1張卡)
+        ========================================= */}
+        <div className={`${styles.nodeWrapper} ${styles.flyInLeft}`}>
+          <div 
+            className={`${styles.categoryRect} ${styles.pos5} ${activeCategory === 'tbc2' ? styles.activeRect : ''}`}
+            style={{ '--glow-color': 'rgba(170, 160, 170, 0.8)' } as React.CSSProperties}
+            onClick={() => toggleCategory('tbc2')}
+          >
+            <span>To Be<br/><br/>Continued</span>
+          </div>
+
+          <div className={`${styles.accordionContent} ${activeCategory === 'tbc2' ? styles.open : ''}`}>
+            {activeCategory === 'tbc2' && (
+              <article className={styles.projectCard}>
+                <h3 className={styles.projectTitle} style={{ color: '#888' }}>To Be Continued</h3>
+                <p style={{ position: 'relative', zIndex: 1, fontSize: '0.85em', margin: '15px 0', lineHeight: '1.4', color: '#555' }}>
+                  To Be Continued
+                </p>
+              </article>
+            )}
+          </div>
+        </div>
+
+        {/* =========================================
+             節點 6：To Be Continued 3 (1張卡)
+        ========================================= */}
+        <div className={`${styles.nodeWrapper} ${styles.flyInRight}`}>
+          <div 
+            className={`${styles.categoryRect} ${styles.pos6} ${activeCategory === 'tbc3' ? styles.activeRect : ''}`}
+            style={{ '--glow-color': 'rgba(160, 170, 160, 0.8)' } as React.CSSProperties}
+            onClick={() => toggleCategory('tbc3')}
+          >
+            <span>To Be<br/><br/>Continued</span>
+          </div>
+
+          <div className={`${styles.accordionContent} ${activeCategory === 'tbc3' ? styles.open : ''}`}>
+            {activeCategory === 'tbc3' && (
+              <article className={styles.projectCard}>
+                <h3 className={styles.projectTitle} style={{ color: '#888' }}>To Be Continued</h3>
+                <p style={{ position: 'relative', zIndex: 1, fontSize: '0.85em', margin: '15px 0', lineHeight: '1.4', color: '#555' }}>
+                  To Be Continued
+                </p>
+              </article>
+            )}
+          </div>
+        </div>
 
       </div>
     </section>

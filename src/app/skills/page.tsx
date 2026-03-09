@@ -11,23 +11,18 @@ import styles from './skills.module.css';
 */
 const CarouselContent = () => (
   <>
-    <StatCard title="Pipeline development" tool="book">
-      {/* 使用 <p> 標籤取代 <div> 提升語意 */}
-      <p style={{ fontSize: '0.75em', fontWeight: 'bold', lineHeight: '1.4', margin: 0 }}>
-        Expertise in developing and optimizing bioinformatics 
-        pipelines for DNA-seq, RNA-seq, scRNA-seq and GWAS.
-      </p>
-    </StatCard>
 
     <StatCard title="WES analysis" tool="book">
       <SubTitle text="Preprocessing" tags={['BWA', 'Samtools', 'fastQC', 'MultiQC']} />
-      <SubTitle text="Variant Calling" tags={['GATK/Mutect2', 'MuSE', 'Varscan', 'CNVkit', 'Pindel', 'ScanITD']} />
-      <SubTitle text="Annotation" tags={['Vep', 'Vcf2MAF', 'Arrnovar', 'IGV', 'Gistic2', 'Sigprofiler']} />
+      <SubTitle text="Variant Calling" tags={['GATK/Mutect2', 'MuSE', 'Varscan', 'CNVkit', 'Pindel', 'ScanITD', 'GenomonITDetector']} />
+      <SubTitle text="Annotation" tags={['Vep', 'Vcf2MAF', 'Annovar', 'IGV', 'Gistic2', 'Sigprofiler']} />
     </StatCard>
 
     <StatCard title="RNA analysis" tool="book">
-      <SubTitle text="Mapping" tags={['STAR', 'HISAT2', 'Samtools', 'Kallisto']} />
-      <SubTitle text="Expression" tags={['featureCounts', 'RSEM', 'Deseq2', 'Limma', 'EdgeR', 'KEGG']} />
+      <SubTitle text="Mapping" tags={['STAR', 'HISAT2', 'Samtools', 'Kallisto', 'Salmon']} />
+      <SubTitle text="Expression Quantification" tags={['featureCounts', 'RSEM', 'StringTie']} />
+      <SubTitle text="Differential Expression Analysis" tags={['Deseq2', 'Limma', 'EdgeR']} />
+      <SubTitle text="Functional Enrichment Analysis" tags={['GSEA', 'KEGG', 'GO']} />
     </StatCard>
 
     <StatCard title="scRNA analysis" tool="book">
@@ -37,10 +32,14 @@ const CarouselContent = () => (
     </StatCard>
 
     <StatCard title="GWAS analysis" tool="book">
-      <div className={styles.tagContainer} style={{ marginTop: '15px' }}>
-        <span className={styles.pixelTag}>eQTL</span>
-        <span className={styles.pixelTag}>Mendelian Randomization</span>
-      </div>
+      <SubTitle text="Mendelian Randomization" tags={['plink', 'TwoSampleMR']} />
+    </StatCard>
+
+    <StatCard title="Other" tool="book">
+      <SubTitle text="Pipeline development" tags={[' Expertise in developing and optimizing bioinformatics pipelines for DNA-seq, RNA-seq, scRNA-seq and GWAS.']} />
+      <SubTitle text="Machine learning" tags={['logistic regression', 'random forest']} />
+      <SubTitle text="Deep learning" tags={['CNN']} />
+
     </StatCard>
   </>
 );
@@ -58,7 +57,7 @@ export default function SkillsPage() {
         {/* --- 🖥️ 終端機風格標題 --- */}
         <h2 className="terminal-header">
           {/* 保留 \u00a0 用於微調對齊，若全站已由 padding-left 統一，此處也可移除 */}
-          <span className="prompt-symbol">{"\u00a0\u00a0\u00a0\u00a0\u00a0"}{">"}</span> SKILLS
+          <span className="prompt-symbol">{">"}</span> SKILLS
         </h2>
         
         {/* --- 📊 靜態技能網格 (語言與工具) --- */}

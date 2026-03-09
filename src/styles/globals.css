@@ -136,7 +136,7 @@ body::before {
 }
 .terminal-header {
   font-family: 'Press Start 2P', cursive; font-size: 1em; color: #007acc; display: flex; align-items: center; justify-content: flex-start;
-  width: 90%; max-width: 1000px; margin: 40px auto 40px auto; padding-left: 2%; text-transform: uppercase;
+  width: 90%; max-width: 1000px; margin: 40px auto 40px auto; padding-left: 40%; text-transform: uppercase;
 }
 .prompt-symbol { font-weight: bold; margin-right: 15px; }
 

@@ -4,77 +4,146 @@
    📂 專案頁面主要容器
 ========================================= */
 .projectsPage {
-  /* 確保底色透明，讓 globals.css 的背景動畫 (吃豆人) 能夠透出來 */
   background-color: transparent !important;
   min-height: 100vh;
-  /* 頂部 padding 設為 0，整體推擠交由全域 .page-container 控制 */
   padding: 0 20px 60px 20px;
-  overflow-x: hidden; /* 防止卡片掉落或旋轉時撐破螢幕寬度產生橫向捲軸 */
+  overflow-x: hidden; 
   width: 100%;
   box-sizing: border-box;
 }
 
-/* 內容限制器：保持專案卡片在舒適的閱讀寬度內 */
 .contentWrapper {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center; /* 讓內部的卡片置中排列 */
+  align-items: center; 
 }
 
 /* =========================================
-   🎬 動態效果定義 (Keyframes)
+   矩形分類節點系統 (Category Rects)
 ========================================= */
-
-/* 卡片掉落動畫：從畫面正上方外側 (-100vh) 掉落，並帶有彈跳感 */
-@keyframes dropDown {
-  0% { 
-    transform: translateY(-100vh) rotate(var(--start-rot)); 
-    opacity: 0; 
-  }
-  60% { 
-    transform: translateY(20px) rotate(var(--end-rot)); /* 稍微掉過頭，製造彈性 */
-  }
-  100% { 
-    transform: translateY(0) rotate(var(--end-rot)); 
-    opacity: 1; 
-  }
+.nodeWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: -15px; 
+  position: relative;
 }
 
-/* 背景圖漸顯動畫：從模糊到清晰，並保持極低透明度 */
+.flyInLeft { animation: flyLeft 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards; }
+.flyInRight { animation: flyRight 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards; }
+
+@keyframes flyLeft {
+  0% { transform: translateX(-100vw); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+@keyframes flyRight {
+  0% { transform: translateX(100vw); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+.categoryRect {
+  width: 280px;  
+  height: 90px;  
+  border-radius: 15px; 
+  /* ✅ 讓邊框顏色吃 React 傳進來的各別專屬色！ */
+  border: 3px solid var(--glow-color); 
+  background-color: rgba(248, 245, 235, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.52em; 
+  color: #555; 
+  text-transform: uppercase;
+  line-height: 1.6;
+  box-shadow: 6px 6px 0px rgba(106, 130, 145, 0.2);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 10; 
+}
+
+.categoryRect:hover {
+  background-color: #fff; 
+  color: #111;
+  /* 懸停時稍微加深實體陰影即可，不干擾邊框顏色 */
+  box-shadow: 6px 6px 0px rgba(106, 130, 145, 0.4);
+}
+
+/* ✅ 擴充為 6 層 Z 字型錯位 (由上到下完美交疊) */
+.pos1 { transform: translateX(-100px); z-index: 16; } 
+.pos2 { transform: translateX(100px);  z-index: 15; } 
+.pos3 { transform: translateX(-100px); z-index: 14; } 
+.pos4 { transform: translateX(100px);  z-index: 13; } 
+.pos5 { transform: translateX(-100px); z-index: 12; } 
+.pos6 { transform: translateX(100px);  z-index: 11; } 
+
+.activeRect {
+  transform: translateX(0) scale(1.08) !important;
+  background-color: #fff !important;
+  color: #111 !important;
+  border-color: var(--glow-color) !important;
+  /* ✅ 移除了 inset 內發光，讓光暈純粹向外擴散 */
+  box-shadow: 0 0 35px var(--glow-color) !important;
+  z-index: 20 !important; 
+}
+
+/* =========================================
+   🗂️ 手風琴收納區塊 (Accordion)
+========================================= */
+.accordionContent {
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.8s ease-in-out, opacity 0.5s ease-in-out, margin-top 0.5s ease-in-out;
+  position: relative;
+  z-index: 5; 
+  margin-top: 0;
+}
+
+.accordionContent.open {
+  max-height: 3500px; /* 稍微加高，容納 4 張卡片 */
+  opacity: 1;
+  padding-top: 40px; 
+  padding-bottom: 30px;
+  margin-top: 15px; 
+}
+
+/* =========================================
+   📇 專案卡片本體
+========================================= */
+@keyframes dropDown {
+  0% { transform: translateY(-40px) rotate(var(--start-rot)); opacity: 0; }
+  60% { transform: translateY(10px) rotate(var(--end-rot)); }
+  100% { transform: translateY(0) rotate(var(--end-rot)); opacity: 1; }
+}
+
 @keyframes imageFadeIn {
   from { opacity: 0; filter: blur(5px); }
   to { opacity: 0.15; filter: blur(0px); }
 }
 
-/* =========================================
-   📇 專案卡片本體 (Project Card)
-========================================= */
 .projectCard {
-  width: 100%;
+  width: calc(100% - 18px);
   position: relative;
-  margin-bottom: 35px;
+  /* ✅ 只保留這個 margin，確保水平置中且下方有 35px 間距 */
+  margin: 0 auto 35px auto;
   padding: 40px;
-  
-  /* 微透的藍灰色背景，統一全站卡片風格 */
-  background-color: rgba(220, 230, 240, 0.9); 
-  border: 2px solid #111;
-  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.15);
+  background-color: rgba(230, 235, 240, 0.95); 
+  border: 2px solid #6a8291;
+  box-shadow: 8px 8px 0px rgba(106, 130, 145, 0.15);
   box-sizing: border-box;
-  
-  /* 動畫初始狀態隱藏 */
   opacity: 0;
-  
-  /* 使用 cubic-bezier 讓掉落更有重力加速度的感覺 */
-  animation: dropDown 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
-  
-  /* ✅ 效能優化：提示瀏覽器預先處理變形與透明度，動畫更順暢 */
+  animation: dropDown 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
   will-change: transform, opacity; 
 }
 
-/* 🖼️ 卡片背景圖層：等卡片掉落完才浮現 */
 .bgImageOverlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -82,34 +151,27 @@
   background-position: center;
   z-index: 0;
   opacity: 0;
-  pointer-events: none; /* ✅ 絕對必要：確保這層不會擋住按鈕的點擊事件 */
-  
-  /* 延遲 1.5s (等卡片掉落完) 才開始漸顯 */
+  pointer-events: none; 
   animation: imageFadeIn 1s ease-in forwards;
-  animation-delay: 1.5s; 
+  animation-delay: 1.0s; 
 }
 
-/* --- ⏱️ 依序掉落與旋轉設定 (利用 CSS 變數) --- */
-/* 第一張卡片 (nth-child(1) 可能是標題，所以從 2 開始) */
-.projectCard:nth-child(2) { --start-rot: -10deg; --end-rot: -1deg; animation-delay: 0.2s; }
-.projectCard:nth-child(3) { --start-rot: 10deg;  --end-rot: 1deg;  animation-delay: 0.5s; }
-.projectCard:nth-child(4) { --start-rot: -5deg;  --end-rot: 0.5deg; animation-delay: 0.8s; }
-.projectCard:nth-child(5) { --start-rot: 5deg;   --end-rot: -0.5deg; animation-delay: 1.1s; }
+/* ✅ 擴充掉落延遲，支援到第 4 張卡片 (Bioinformatics) */
+.projectCard:nth-child(1) { --start-rot: -4deg;  --end-rot: -0.8deg; animation-delay: 0.2s; }
+.projectCard:nth-child(2) { --start-rot: 4deg;   --end-rot: 0.8deg;  animation-delay: 0.5s; }
+.projectCard:nth-child(3) { --start-rot: -2deg;  --end-rot: 0.4deg;  animation-delay: 0.8s; }
+.projectCard:nth-child(4) { --start-rot: 3deg;   --end-rot: -0.5deg; animation-delay: 1.1s; }
 
-/* =========================================
-   📝 內部排版元素 (標題、按鈕、文字)
-========================================= */
 .projectTitle {
   font-family: 'Press Start 2P', cursive;
   font-size: 0.85em;
-  color: #007acc; /* 統一科技藍 */
+  color: #007acc; 
   position: relative;
-  z-index: 1; /* 確保文字在背景圖之上 */
+  z-index: 1;
   margin-top: 0;
   text-transform: uppercase;
 }
 
-/* 連結按鈕 (例如：GitHub Repo 或 Live Demo) */
 .btnLink {
   display: inline-block;
   background: #111;
@@ -125,19 +187,9 @@
   cursor: pointer;
 }
 
-/* 按鈕懸停特效：變藍色並稍微向上浮起 */
 .btnLink:hover {
   background: #007acc;
   transform: translateY(-2px);
-}
-
-/* 頁尾預告文字 */
-.toBeContinued {
-  text-align: center;
-  font-family: 'Press Start 2P', cursive;
-  color: #888;
-  font-size: 0.7em;
-  padding: 30px 0;
 }
 
 /* =========================================
@@ -148,25 +200,35 @@
     padding-left: 15px;
     padding-right: 15px;
   }
+  
+  .categoryRect {
+    width: 200px;
+    height: 70px;
+    font-size: 0.4em;
+    border-radius: 10px;
+  }
+  
+  .nodeWrapper { margin-bottom: -10px; width: calc(100% + 30px); margin-left: -15px; }
+  
+  /* ✅ 手機版的 6 層 Z 字型縮小錯位 */
+  .pos1 { transform: translateX(-40px); z-index: 16; }
+  .pos2 { transform: translateX(40px);  z-index: 15; }
+  .pos3 { transform: translateX(-40px); z-index: 14; }
+  .pos4 { transform: translateX(40px);  z-index: 13; }
+  .pos5 { transform: translateX(-40px); z-index: 12; }
+  .pos6 { transform: translateX(40px);  z-index: 11; }
+
+  .activeRect { transform: translateX(0) scale(1.05) !important; }
 
   .projectCard {
+    width: calc(100% - 8px);
     padding: 25px 20px;
-    margin-bottom: 25px;
-    
-    /* ✅ UX 極佳化：手機版強制取消旋轉，避免畫面太小導致卡片邊緣被裁切或閱讀困難 */
+    /* ✅ 只保留這個 margin，確保水平置中且下方有 25px 間距 */
+    margin: 0 auto 25px auto;
     --end-rot: 0deg !important; 
-    
-    /* 縮小陰影，適應小螢幕比例 */
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1); 
   }
 
-  .projectTitle {
-    font-size: 0.72em;
-    line-height: 1.5; /* 增加行高，避免標題過長折行時擠在一起 */
-  }
-
-  .btnLink {
-    padding: 8px 14px;
-    font-size: 0.5em;
-  }
+  .projectTitle { font-size: 0.72em; line-height: 1.5; }
+  .btnLink { padding: 8px 14px; font-size: 0.5em; }
 }

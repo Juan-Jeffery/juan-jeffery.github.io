@@ -59,7 +59,7 @@
   display: flex;
   gap: 15px;
   width: max-content;
-  animation: infiniteScroll 25s linear infinite;
+  animation: infiniteScroll 10s linear infinite;
   /* ✅ 效能優化：強制開啟 GPU 加速，讓長條輪播圖不卡頓 */
   will-change: transform; 
 }
