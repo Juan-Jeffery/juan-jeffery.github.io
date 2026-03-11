@@ -44,7 +44,7 @@ export default function ProjectsPage() {
 
                 <article className={styles.projectCard}>
                   <div className={styles.bgImageOverlay} role="img" style={{ backgroundImage: "url('https://raw.githubusercontent.com/Juan-Jeffery/juan-jeffery.github.io/main/plot/ITD.png')" }}></div>
-                  <h3 className={styles.projectTitle}>ITD Mutation Pipeline</h3>
+                  <h3 className={styles.projectTitle}>ITD Mutation Detection Pipeline</h3>
                   <p style={{ position: 'relative', zIndex: 1, fontSize: '0.85em', margin: '15px 0', lineHeight: '1.4', color: '#333' }}>
                     Bioinformatics pipeline for detecting Internal Tandem Duplications using Pindel, Genomonitdetector and ScanITD.
                   </p>
